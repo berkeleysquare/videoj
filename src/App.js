@@ -1,26 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MainDisplay from './componenets/main_display';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainDisplay
+      title={"Ain't Misbehavin"}
+      description={"Was that a good time or what? Kurt O is back in the LiveAtTheCoffehouse.com 'A' Studios."}
+      src={"https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/AintMisbehavin.mp4"}
+      composer={"Fats Waller"}
+      copyright={1929}/>
   );
-}
+};
 
 export default App;
