@@ -29,7 +29,7 @@ const mainDisplay = props => {
   return (
     <div>
       <Paper className={classes.video}>
-        <Grid container>
+        <Grid container spacing={0}>
           <Grid item xs={12} sm={12} md={12} className={classes.titleContent}>
             <h1>{title}</h1>
             <p>{description}</p>
@@ -42,12 +42,14 @@ const mainDisplay = props => {
               Your browser does not support the video tag.
             </video>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
-            <PrevNext title={'Wave'}
+          <Grid item xs={12} sm={4} md={4} >
+            <PrevNext className={classes.player}
+                      title={'Wave'}
                       imgSrc="/assets/Wave.jpg"
                       type={PREV} />
             <br />
-            <PrevNext title={'Blues in the Night`'}
+            <PrevNext className={classes.player}
+                      title={'Blues in the Night`'}
                       imgSrc="/assets/BluesInTheNight.jpg"
                       type={NEXT} />
           </Grid>
