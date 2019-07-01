@@ -1,47 +1,63 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
+import PrevNext, {PREV, NEXT} from './prev_next_button';
+import {MAIN_WIDTH} from '../constants';
+import {withStyles} from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 
+const styles = theme => ({
+  video: {
+    elevation: 2,
+    width: MAIN_WIDTH,
+    height: '500px',
+    position: 'absolute',
+    top: '80px'
+  },
+  player: {
+    marginLeft: '12px',
+    width: '480px',
+    height: '360px',
+  },
+  titleContent: {
+    marginLeft: '12px',
+  }
+});
 
 const mainDisplay = props => {
-  const {title, description, src, composer, copyright} = props;
+  const {title, description, src, composer, copyright, classes} = props;
 
   return (
     <div>
-      <h2>{title}</h2>
-      <Grid container>
-        <Grid item xs={12} sm={12} md={12}>
-          <p>{description}</p>
+      <Paper className={classes.video}>
+        <Grid container>
+          <Grid item xs={12} sm={12} md={12} className={classes.titleContent}>
+            <h1>{title}</h1>
+            <p>{description}</p>
+          </Grid>
+          <Grid item xs={12} sm={8} md={8}>
+            <video className={classes.player}
+                   controls
+                   poster="/assets/AngelEyes.jpg">
+                   <source src={src} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </Grid>
+          <Grid item xs={12} sm={4} md={4}>
+            <PrevNext title={'Wave'}
+                      imgSrc="/assets/Wave.jpg"
+                      type={PREV} />
+            <br />
+            <PrevNext title={'Blues in the Night`'}
+                      imgSrc="/assets/BluesInTheNight.jpg"
+                      type={NEXT} />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} className={classes.titleContent}>
+             <h2>{composer + (copyright ? (' ©' + copyright) : '')}</h2>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={8} md={8}>
-          <video width="450" height="338"
-                 controls
-                 src={src}
-                 type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </Grid>
-        <Grid item xs={12} sm={4} md={4}>
-          <Hidden smDown implementation='css'>
-            <h3>Some Stuff...</h3>
-            <img src="/assets/cork.jpg" width="180px" height="120px" />
-            <h3>More Stuff</h3>
-            <img src="/assets/cork.jpg" width="180px" height="120px" />
-          </Hidden>
-          <Hidden only={['xs','md','lg','xl']} implementation='css'>
-            <p>Stuff...</p>
-            <img src="/assets/cork.jpg" width="80px" height="120px" />
-            <p>More</p>
-            <img src="/assets/cork.jpg" width="80px" height="120px" />
-          </Hidden>
-        </Grid>
-        <Grid item xs={12} sm={12} md={12}>
-           <p>{composer + (copyright ? (' ©' + copyright) : '')}</p>
-        </Grid>
-      </Grid>
+      </Paper>
     </div>
   );
 };
 
-
-export default mainDisplay;
+export default withStyles(styles)(mainDisplay);
