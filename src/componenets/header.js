@@ -20,7 +20,7 @@ const header = props => {
 
   return (
     <Paper className={classes.headerBar}>
-      <a src={linkTo}>
+      <a href={linkTo}>
         <img className={classes.headerImg} src={imgSrc} alt={title} />
       </a>
     </Paper>

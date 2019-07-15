@@ -1,20 +1,20 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import MainDisplay from './componenets/main_display';
 import HeaderDisplay from './componenets/header';
 import * as constants from './constants';
-
+import configureStore from './store/store'
 
 function App() {
+
+
   return (
-    <div>
+    <Provider store={configureStore(configureStore({'resources': {}}))}>
       <HeaderDisplay title={constants.TITLE} imgSrc={constants.HEADER_IMAGE} linkTo={constants.HEADER_LINK} />
       <MainDisplay
-        title={"Ain't Misbehavin"}
-        description={"Was that a good time or what? Kurt O is back in the LiveAtTheCoffehouse.com 'A' Studios."}
-        src={"https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/AintMisbehavin.mp4"}
-        composer={"Fats Waller"}
-        copyright={1929}/>
-    </div>
+        title={"Skylark"}
+        collection={'jkboxed'} />
+    </Provider>
   );
 };
 

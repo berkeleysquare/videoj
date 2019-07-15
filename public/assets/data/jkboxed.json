@@ -1,0 +1,39 @@
+{
+  "title": "JK Boxed",
+  "data": [
+    {
+      "title": "Ain't Misbehavin",
+      "description": "Was that a good time or what? Kurt O is back in the LiveAtTheCoffehouse.com 'A' Studios.",
+      "ensemble": "kurt_o",
+      "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/AintMisbehavin.mp4",
+      "composer": "Fats Waller",
+      "copyright": 1944,
+      "poster": "AintMisbehavin.jpg"
+    },
+    {
+      "title": "Ain't Misbehavin 2015",
+      "description": "Am not!",
+      "ensemble": "jk_solo",
+      "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/AintMisbehavin_2015.mp4",
+      "composer": "Fats Waller",
+      "copyright": 1944,
+      "poster": "AintMisbehavin_2015.jpg"
+    },
+    {
+      "title": "God Bless America",
+      "description": "Happy Memorial Day",
+      "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/GodBlessAmerica.mp4",
+      "composer": "Irving Berlin",
+      "copyright": 1918,
+      "poster": "GodBlessAmerica.jpg"
+    },
+    {
+      "title": "Skylark",
+      "description": "Take the new D'Angelico for a spin.",
+      "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/Skylark2019.mp4",
+      "composer": "Hoagy Carmichael - Johny Mercer",
+      "copyright": 1941,
+      "poster": "Skylark.jpg"
+    }
+  ]
+}
