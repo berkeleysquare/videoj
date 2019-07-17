@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import {withStyles} from '@material-ui/core/styles';
+import {Link, withRouter} from 'react-router-dom';
+
 import Hidden from '@material-ui/core/Hidden';
 import NextIcon from '@material-ui/icons/ArrowForwardRounded';
 import PrevIcon from '@material-ui/icons/ArrowBackRounded'
@@ -34,32 +36,35 @@ const styles = theme => ({
 });
 
 const prevNextButton = props => {
-  const {title, type, imgSrc, classes} = props;
+  const {item, type, classes} = props;
+  const {title, poster, id} = item;
 
   return (
     <div className={classes.panel}>
-      <Tooltip title={type + ': ' + title}>
-        <table border="0"><tbody> <tr>
-          <td>
-            <Hidden smDown implementation='css'>
-              <img className={classes.image} src={imgSrc} alt={type} />
-            </Hidden>
-          </td>
-          <td>
-            <Button aria-label={type} className={classes.button}>
-                {type === PREV ? <PrevIcon/> : <NextIcon/>}
-              </Button>
-          </td>
-        </tr>
-        <tr>
-          <td colSpan={2}>
-            <Hidden smDown implementation='css'>
-              <h3>{title}</h3>
-            </Hidden>
+      {id && <Tooltip title={type + ': ' + title}>
+        <Link to={{search: 'id=' + id}}>
+          <table border="0"><tbody> <tr>
+            <td>
+              <Hidden smDown implementation='css'>
+                <img className={classes.image} src={'/assets/' + poster} alt={type} />
+              </Hidden>
             </td>
-        </tr>
-        </tbody></table>
-      </Tooltip>
+            <td>
+              <Button aria-label={type} className={classes.button}>
+                  {type === PREV ? <PrevIcon/> : <NextIcon/>}
+                </Button>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2}>
+              <Hidden smDown implementation='css'>
+                <h3>{title}</h3>
+              </Hidden>
+              </td>
+          </tr>
+          </tbody></table>
+        </Link>
+      </Tooltip>}
     </div>
   );
 };

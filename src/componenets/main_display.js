@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
+import {withRouter} from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -7,7 +8,6 @@ import PrevNext, {PREV, NEXT} from './prev_next_button';
 import {MAIN_WIDTH} from '../constants';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import {createTable, Crud, cRud, crUd, cruD} from '../db/dynamodb'
 
 import * as buttons from '../constants'
 import {fetchResource, isFetching, getDataArray} from '../store/actions'
@@ -30,7 +30,9 @@ const styles = theme => ({
   }
 });
 
-const DEFAULT_COLLECTION = 'jkboxed';
+
+export const DEFAULT_COLLECTION = 'jkboxed';
+export const DEFAULT_ID = 100;
 const DEFAULT_TITLE = 'Skylark';
 
 class mainDisplay extends React.Component {
@@ -40,11 +42,15 @@ class mainDisplay extends React.Component {
   };
 
   render() {
-    const {fetching, videos, title, collection, classes} = this.props;
+    const {fetching, videos, id, collection, classes} = this.props;
 
-    const filtered = (!fetching && videos) ? videos.filter(v => v.title === title) : [];
+    const filtered = (!fetching && videos) ? videos.filter(v => v.id === id) : [];
+    const nextVideos = (!fetching && videos) ? videos.filter(v => v.id > id).sort((a,b) => a.id - b.id) : [];
+    const prevVideos = (!fetching && videos) ? videos.filter(v => v.id < id).sort((a,b) => b.id - a.id) : [];
     const video = (filtered && filtered.length) ? filtered[0] : {};
-    const {description, media, poster, composer, copyright} = video;
+    const prev = (prevVideos && prevVideos.length) ? prevVideos[0] : {};
+    const next = (nextVideos && nextVideos.length) ? nextVideos[0] : {};
+    const {title, description, media, poster, composer, copyright} = video;
 
     return (
       <div>
@@ -64,24 +70,15 @@ class mainDisplay extends React.Component {
             </Grid>
             <Grid item xs={12} sm={4} md={4}>
               <PrevNext className={classes.player}
-                        title={'Wave'}
-                        imgSrc="/assets/Wave.jpg"
+                        item={prev}
                         type={PREV}/>
               <br />
               <PrevNext className={classes.player}
-                        title={'Blues in the Night`'}
-                        imgSrc="/assets/BluesInTheNight.jpg"
+                        item={next}
                         type={NEXT}/>
             </Grid>
             <Grid item xs={12} sm={9} md={6} className={classes.titleContent}>
               <h2>{composer + (copyright ? (' ©' + copyright) : '')}</h2>
-            </Grid>
-            <Grid item xs={12} sm={3} md={6}>
-              <Button onClick={createTable.bind()}>{'Table'}</Button>
-              <Button onClick={Crud.bind()}>{'Create'}</Button>
-              <Button onClick={cRud.bind()}>{'Retrieve'}</Button>
-              <Button onClick={crUd.bind()}>{'Update'}</Button>
-              <Button onClick={cruD.bind()}>{'Delete'}</Button>
             </Grid>
           </Grid>
         </Paper>
@@ -91,12 +88,14 @@ class mainDisplay extends React.Component {
 };
 
 function mapStateToProps(state, ownProps) {
+  const params = new URLSearchParams(ownProps.location.search);
+  const id = params.get('id') || DEFAULT_ID;
+  const collection = params.get('collection') || DEFAULT_COLLECTION;
+
   const videosState = state ? state[buttons.JKBOXED] : {};
-  const collection = ownProps.collection || DEFAULT_COLLECTION;
-  const title = ownProps.title || DEFAULT_TITLE;
 
   return {
-    title,
+    id: parseInt(id),
     collection,
     videos: getDataArray(videosState),
     fetching: isFetching([videosState])
@@ -108,4 +107,4 @@ function mapDispatchToProps(dispatch) {
     fetchItems: () => dispatch(fetchResource(buttons.JKBOXED)),
   };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(mainDisplay));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(mainDisplay)));
