@@ -12,3 +12,5 @@ export const JKBOXED = 'jkboxed';
 export const COFFEEHOUSE = 'coffeehouse';
 export const BERKELEYSQUARE = 'berkeleysquare';
 export const JK_SOLO = 'jk';
+export const DEFAULT_COLLECTION = JKBOXED;
+export const DEFAULT_ENSEMBLE = 'all';

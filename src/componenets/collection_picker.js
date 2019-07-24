@@ -1,0 +1,78 @@
+import React from 'react';
+import {connect} from "react-redux";
+import {withRouter, Link} from 'react-router-dom';
+import ImageButton from './image_button';
+import {DEFAULT_ENSEMBLE, DEFAULT_COLLECTION} from '../constants'
+
+
+const images = [
+  {
+    url: '/assets/jkha.png',
+    title: 'Halfway Gone',
+    collection: 'jkboxed',
+    width: '16%',
+  },
+  {
+    url: '/assets/jkev.png',
+    title: 'jk Even Numbered Decades',
+    collection: 'jkboxed',
+    width: '16%',
+  },
+  {
+    url: '/assets/errand.png',
+    title: 'Errand Boys for Rhythm',
+    collection: 'jkboxed',
+    width: '16%',
+  },
+  {
+    url: '/assets/berk1.png',
+    title: 'Berkeley Square',
+    collection: 'jkboxed',
+    width: '16%',
+  },
+  {
+    url: '/assets/berk2.png',
+    title: 'A Nightingale Sang',
+    collection: 'jkboxed',
+    width: '16%',
+  },
+  {
+    url: '/assets/coffee.png',
+    title: 'The Coffeehouse',
+    collection: 'coffeehouse',
+    width: '16%',
+  },
+];
+
+class collectionPicker extends React.Component {
+
+  render() {
+    const {collectionEnsembles, collection, ensemble, classes} = this.props;
+
+    return (
+      <div>
+        {images.map(image => {
+          return (
+            <Link to={'/' + image.collection + '/' + DEFAULT_ENSEMBLE} key={DEFAULT_ENSEMBLE}>
+              <ImageButton image={image}/>
+            </Link>
+        )})}
+      </div>
+    );
+  };
+}
+
+function mapStateToProps(state, ownProps) {
+  const ensemble = ownProps.ensemble || DEFAULT_ENSEMBLE;
+  const collection = ownProps.collection || DEFAULT_COLLECTION;
+  const collectionEnsembles = ownProps.ensembles || [];
+
+  return {
+    history: ownProps.history,
+    collection,
+    ensemble,
+    collectionEnsembles,
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(collectionPicker));

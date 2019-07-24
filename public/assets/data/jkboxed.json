@@ -1,12 +1,31 @@
 {
   "title": "JK Boxed",
+  "description": "Live from the Coffeehouse, at JKBoxed.com!",
+  "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/",
+  "ensembles": [
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0d2"},"id":"jk_solo","text":"jk solo","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0d3"},"id":"sugarchuck","text":"Sugarchuck","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0d4"},"id":"dick_howard_and_diane","text":"Dick, Howard and Diane","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0d5"},"id":"kurt_o","text":"Kurt O","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0d6"},"id":"special_guests","text":"Special Guests","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0d7"},"id":"the_hoagies","text":"The Hoagies","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0d8"},"id":"test_of_time","text":"Test of Time","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0d9"},"id":"flat_out_jazz","text":"Flat Out Jazz","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0da"},"id":"cousin_syd","text":"Cousin Syd","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0db"},"id":"mike","text":"Mike","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0dc"},"id":"the_city_wine_sessions","text":"The City Wine Sessions","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0dd"},"id":"from_the_blue_bird","text":"From the Blue Bird","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0de"},"id":"mollie_dangerbucket","text":"Mollie Dangerbucket","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0df"},"id":"fused_improv","text":"Fused Improv","collection":"coffeehouse"},
+    {"_id":{"$oid":"5d36294a16bf2e11fcdbb0e0"},"id":"sparrowhawk","text":"sparrowhawk","collection":"coffeehouse"}
+  ],
   "data": [
     {
       "id" : 100,
       "title": "Ain't Misbehavin",
       "description": "Was that a good time or what? Kurt O is back in the LiveAtTheCoffehouse.com 'A' Studios.",
       "ensemble": "kurt_o",
-      "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/AintMisbehavin.mp4",
+      "media": "AintMisbehavin.mp4",
       "composer": "Fats Waller",
       "copyright": 1944,
       "poster": "AintMisbehavin.jpg"
@@ -16,7 +35,7 @@
       "title": "Ain't Misbehavin 2015",
       "description": "Am not!",
       "ensemble": "jk_solo",
-      "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/AintMisbehavin_2015.mp4",
+      "media": "AintMisbehavin_2015.mp4",
       "composer": "Fats Waller",
       "copyright": 1944,
       "poster": "AintMisbehavin_2015.jpg"
@@ -25,7 +44,7 @@
       "id" : 130,
       "title": "God Bless America",
       "description": "Happy Memorial Day",
-      "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/GodBlessAmerica.mp4",
+      "media": "GodBlessAmerica.mp4",
       "composer": "Irving Berlin",
       "copyright": 1918,
       "poster": "GodBlessAmerica.jpg"
@@ -34,10 +53,182 @@
       "id" : 140,
       "title": "Skylark",
       "description": "Take the new D'Angelico for a spin.",
-      "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/Skylark2019.mp4",
+      "media": "Skylark2019.mp4",
       "composer": "Hoagy Carmichael - Johny Mercer",
       "copyright": 1941,
       "poster": "Skylark.jpg"
+    },
+    {
+      "id" : 150,
+      "title": "All in the Game",
+      "description": "The only No. 1 pop single to have been co-written by a U.S. Vice President or winner of the Nobel Peace Prize.",
+      "ensemble": "jk_mandolin",
+      "media": "AllInTheGame.mp4",
+      "composer": "Music Charles Gates Dawes ©1911; lyrics Carl Sigman ©1951",
+      "copyright": 1951,
+      "poster": "AllInTheGame.jpg",
+      "recorded": "2017-02-12"
+    },
+    {
+      "id" : 160,
+      "title": "Always",
+      "description": "I confess I did not know about Nick Lucas until I found myself the proud owner of a 'Nick Lucas Model' guitar. Researching the great cowboy singer, I was struck that his repertoire closely match my Father's favorite songs -- even including one I thought Dad had written. I heard Dad sing this 100 times; here 'tis in Nick Lucas style (though I cannot pull off the operatic tenor voice)",
+      "ensemble": "jk_solo",
+      "media": "Always.mp4",
+      "composer": "Irbing Berlin",
+      "copyright": 1925,
+      "poster": "Always.jpg",
+      "recorded": "2015-08-25"
+    },
+    {
+      "id" : 170,
+      "title": "Angel",
+      "description": "A special request from coffeehouse friend Sugarchuck. Jazz-schmazz, let's hear some Hendrix!",
+      "ensemble": "jk_mandolin",
+      "media": "Angel.mp4",
+      "composer": "Jimi Hendrix",
+      "copyright": 1970,
+      "poster": "Angel.jpg",
+      "recorded": "2014-10-13"
+    },
+    {
+      "id" : 180,
+      "title": "Angel Eyes",
+      "description": "The Kurt O sessions, sadly, come to a close today, though there was speculation for another.",
+      "ensemble": "kurt_o",
+      "media": "AngelEyes.mp4",
+      "composer": "Matt Dennis, lyrics by Earl Brent",
+      "copyright": 1946,
+      "poster": "Kurt_jk.jpg",
+      "recorded": "2016-08-24"
+    },
+    {
+      "id" : 190,
+      "title": "Alfie",
+      "description": "I used to sing this song to my friends' cat. Now I understand Alfie has gone to kitty heaven after 17 years.Neither my feline friend nor I ever made it past the first eight bars, so I had to learn this tune for the coffeehouse's first special dedication.It's an unusual and pretty son",
+      "ensemble": "jk_solo",
+      "media": "alfie.mp4",
+      "composer": "Burt Bacharach and Hal David",
+      "copyright": 1966,
+      "poster": "alfie.jpg",
+      "recorded": "2010-01-14"
+    },
+    {
+      "id" : 200,
+      "title": "All of Me",
+      "description": "SugarChuck, a purple Telecaster, Seymour Simons's 1931 hit All of Me.",
+      "ensemble": "Sugarchuck",
+      "media": "all_of_me.mp4",
+      "composer": "Seymour Simons",
+      "copyright": 1931,
+      "poster": "all_of_me.jpg",
+      "recorded": "2009-07-09"
+    },
+    {
+      "id" : 210,
+      "title": "All of You",
+      "description": "all_of_you",
+      "ensemble": "kurt_o",
+      "media": "all_of_you.mp4",
+      "composer": "Cole Porter",
+      "copyright": 1954,
+      "poster": "all_of_you.jpg",
+      "recorded": "2009-06-04"
+    },
+    {
+      "id" : 220,
+      "title": "All the Things You Are",
+      "description": "Mister Jerome Kern",
+      "ensemble": "jk_solo",
+      "media": "all_the_things.mp4",
+      "composer": "Jerome Kern, lyrics Oscar Hammerstein II",
+      "copyright": 1939,
+      "poster": "all_the_things.jpg",
+      "recorded": "2010-03-11"
+    },
+    {
+      "id" : 230,
+      "title": "All the Way",
+      "description": "Keep them Sammy Cahn tunes coming! Sammy Cahn and Jimmie Van Huesen's 'All the Way.'",
+      "ensemble": "jk_solo",
+      "media": "all_the_way.mp4",
+      "composer": "Sammy Cahn and Jimmie Van Huesen",
+      "copyright": 1957,
+      "poster": "all_the_way.jpg",
+      "recorded": "2017-02-12"
+    },
+    {
+      "id" : 240,
+      "title": "Alleghany Moon",
+      "description": "My sister Diane and Alleghany Moon!",
+      "ensemble": "Dick, Howard, and Dianje",
+      "media": "alleghany_moon.mp4",
+      "composer": "Al Hoffman and Dick Manning",
+      "copyright": 1956,
+      "poster": "alleghany_moon.jpg",
+      "recorded": "2017-02-12"
+    },
+    {
+      "id" : 250,
+      "title": "Angel From Mantgomery",
+      "description": "My buddy, Mike, joins us in the Coffeehouse 'A' Studios",
+      "ensemble": "Special Guests",
+      "media": "angel_from_montgomery.mp4",
+      "composer": "John Prine",
+      "copyright": 1971,
+      "poster": "AngelFromMontgomery.jpg",
+      "recorded": "2010-05-05"
+    },
+    {
+      "id" : 260,
+      "title": "Azure Te",
+      "description": "Special Tour de France episode!",
+      "ensemble": "jk_tenor",
+      "media": "azure_te.mp4",
+      "composer": "Don Wolf, Bill Davis",
+      "copyright": 1952,
+      "poster": "azure_te.jpg",
+      "recorded": "2015-07-18"
+    },
+    {
+      "id":10000,
+      "title":"You Don't Know Me",
+      "description":"My great friend Sugarchuck was in town and we were able to get together and record a few first takes. Here's the Cindy Walker/ Eddy Arnold masterpiece \"You Don't Know Me:\"                Yeah, we're working on the camera angles -- hang in there!",
+      "ensemble":"jk_solo",
+      "media":"you_dont_know_me.mp4",
+      "composer":"",
+      "copyright":0,
+      "poster":"you_dont_know_me.jpg",
+      "recorded":"2009-05-05",
+      "collection":"coffeehouse"
+    },
+    {
+      "_id":{"$oid":"5d35fc57e385a632186630c5"},
+      "id":10010,
+      "title":"If I Only Had a Brain",
+      "description":"We are still assembling \"headliner\" videos of me and Brooke, but here is a solo version of Harold Arlen and E.Y. Harburg's \"If I Only Had a Brain\"              ",
+      "ensemble":"jk_solo",
+      "media":"IfIOnlyHadABrain.mp4",
+      "composer":"",
+      "copyright":0,
+      "poster":"IfIOnlyHadABrain.jpg",
+      "recorded":"2009-05-07",
+      "collection":"coffeehouse"
+    },
+    {
+      "_id":{"$oid":"5d35fc57e385a632186630c6"},
+      "id":10020,
+      "title":"What a Wonderful World",
+      "description":"My Sister-in-law, Rika, guests in the virtual coffeehouse today, singing one of my favorites, What a Wonderful World.",
+      "ensemble":"jk_solo",
+      "media":"What_a_Womderful_World.mp4",
+      "composer":"Bob Thiele, George Douglas, George David Weiss",
+      "copyright": 1967,
+      "poster":"what_a_wonderful_world.jpg",
+      "recorded":"2009-05-19",
+      "collection":"coffeehouse"
     }
+
   ]
+
 }

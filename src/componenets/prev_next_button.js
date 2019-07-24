@@ -1,4 +1,6 @@
 import React from 'react';
+import ImageButton from './image_button';
+
 import Button from '@material-ui/core/Button';
 import {withStyles} from '@material-ui/core/styles';
 import {Link, withRouter} from 'react-router-dom';
@@ -14,18 +16,13 @@ export const PREV = 'Prev';
 const styles = theme => ({
   panel: {
     marginRight: '10px',
-    backgroundColor: '#eadbc5'
-  },
-  image: {
-    elevation: 2,
-    width: '180px',
-    height: '120px',
-    align: 'center',
+    backgroundColor: '#eadbc5',
+    minHeight: '100px'
   },
   button: {
     background: '#93887a',
-    width: '60px',
-    height: '120px',
+    width: '50px',
+    height: '90px',
     color: '#eee',
     marginRight: '10px',
     backgroundColor: '#93887a',
@@ -37,28 +34,40 @@ const styles = theme => ({
 
 const prevNextButton = props => {
   const {item, type, classes} = props;
-  const {title, poster, id} = item;
+  const {title, poster, id, ensemble} = item;
+  const isPrev = type === PREV;
 
+  const image = {
+    url: '/assets/' + poster,
+    title,
+    width: '160px',
+  }
+ ;
   return (
     <div className={classes.panel}>
       {id && <Tooltip title={type + ': ' + title}>
         <Link to={{search: 'id=' + id}}>
-          <table border="0"><tbody> <tr>
+          <table border="0"><tbody><tr>
+            {isPrev && <td>
+              <Button aria-label={type} className={classes.button}>
+                <PrevIcon/>
+              </Button>
+            </td>}
             <td>
               <Hidden smDown implementation='css'>
-                <img className={classes.image} src={'/assets/' + poster} alt={type} />
+                <ImageButton image={image}/>
               </Hidden>
             </td>
-            <td>
+            {!isPrev && <td>
               <Button aria-label={type} className={classes.button}>
-                  {type === PREV ? <PrevIcon/> : <NextIcon/>}
+                  <NextIcon/>
                 </Button>
-            </td>
+            </td>}
           </tr>
           <tr>
             <td colSpan={2}>
               <Hidden smDown implementation='css'>
-                <h3>{title}</h3>
+                <h5>{ensemble}</h5>
               </Hidden>
               </td>
           </tr>

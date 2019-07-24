@@ -12,7 +12,9 @@ function App() {
     <Provider store={configureStore(configureStore({'resources': {}}))}>
       <HeaderDisplay title={constants.TITLE} imgSrc={constants.HEADER_IMAGE} linkTo={constants.HEADER_LINK} />
       <BrowserRouter basename='/'>
-        <Route path='/' component={MainDisplay} />
+        <Route exact path='/' component={MainDisplay} />
+        <Route exact path='/:collection' component={MainDisplay} />
+        <Route path='/:collection/:ensemble' component={MainDisplay} />
       </BrowserRouter>
     </Provider>
   );
