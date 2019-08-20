@@ -62,6 +62,7 @@ class mainDisplay extends React.Component {
     const {collection} = this.props;
     if (collection && (prevProps.collection !== collection)) {
       this.props.fetchItems(this.props.collection);
+      this.setState({searchText: ''});
     }
   }
 
@@ -91,7 +92,9 @@ class mainDisplay extends React.Component {
           ? videos
           : ((!fetching && videos) ? videos.filter(v => v.ensemble === ensemble) : []);
 
-    const filtered = filteredEnsemble ? filteredEnsemble.filter(i => i.title.startsWith(this.state.searchText)) : [] ;
+    const filtered = filteredEnsemble
+          ? filteredEnsemble.filter(i => i.title.toLowerCase().startsWith(this.state.searchText.toLowerCase()))
+          : [] ;
 
     let video = this.getCurrentVideo(id, filtered);
     // if id not defined (probably not in category) find one

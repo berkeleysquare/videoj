@@ -29,9 +29,7 @@ class searcher extends React.Component {
     const toggleMenu = (e) => this.setState({menu: e.currentTarget});
     const closeMenu = () => this.setState({menu: null});
 
-    const filtered = items ? items.filter(i => i.title.startsWith(searchText)) : [] ;
-
-    const matches = filtered.map(e => {
+    const matches = (items || []).map(e => {
         return (<PrevNextButton key={'menu_' + e.id} item={e} type="None" />)
     });
 
