@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import EnsembleSelect from './ensemble_picker';
+import Searcher from './searcher';
 import CollectionSelect from './collection_picker';
 import PrevNext, {PREV, NEXT} from './prev_next_button';
 import {MAIN_WIDTH} from '../constants';
@@ -12,6 +13,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
 import * as buttons from '../constants'
+import {isAudio, isVideo} from '../constants'
 import {fetchResource, isFetching, getDataArray} from '../store/actions'
 
 const styles = theme => ({
@@ -27,36 +29,87 @@ const styles = theme => ({
     width: '480px',
     height: '360px',
   },
+  audio: {
+    marginLeft: '12px',
+    width: '480px',
+    height: '36px',
+    position: 'relative',
+    top: '-36px',
+    marginBottom: '-36px',
+    opacity: '0.5'
+  },
   titleContent: {
     marginLeft: '12px',
   }
 });
 
 
-export const DEFAULT_ID = 100;
-const DEFAULT_TITLE = 'Skylark';
+export const DEFAULT_ID = 1000;
 
 class mainDisplay extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchText: ''
+    };
+  };
 
   componentDidMount() {
     this.props.fetchItems(this.props.collection);
   };
 
-  onEnsembleChange(event) {
-
+  componentDidUpdate(prevProps) {
+    const {collection} = this.props;
+    if (collection && (prevProps.collection !== collection)) {
+      this.props.fetchItems(this.props.collection);
+    }
   }
+
+  getCurrentVideo = (currentId, currentVideos) => {
+    const videos = currentVideos.filter(v => v.id === currentId);
+    return (videos && videos.length) ? videos[0] : {};
+  };
+
+  getNextVideo = (currentId, currentVideos) => {
+    const nextVideos = currentVideos.filter(v => v.id > currentId).sort((a,b) => a.id - b.id);
+    return (nextVideos && nextVideos.length) ? nextVideos[0] : {};
+  };
+
+  getPrevVideo = (currentId, currentVideos) => {
+    const prevVideos = currentVideos.filter(v => v.id < currentId).sort((a,b) => b.id - a.id);
+    return (prevVideos && prevVideos.length) ? prevVideos[0] : {};
+  };
+
+  handleSearchTextChange = event => {
+    this.setState({searchText: event.target.value});
+  };
 
   render() {
     const {fetching, collectionEnsembles, videos, id, ensemble, collection, collectionTitle, collectionDescription, collectionMedia, classes} = this.props;
 
-    const filtered = (!fetching && videos) ? videos.filter(v => v.id === id) : [];
-    const nextVideos = (!fetching && videos) ? videos.filter(v => v.id > id).sort((a,b) => a.id - b.id) : [];
-    const prevVideos = (!fetching && videos) ? videos.filter(v => v.id < id).sort((a,b) => b.id - a.id) : [];
-    const video = (filtered && filtered.length) ? filtered[0] : {};
-    const prev = (prevVideos && prevVideos.length) ? prevVideos[0] : {};
-    const next = (nextVideos && nextVideos.length) ? nextVideos[0] : {};
+    const filteredEnsemble = (ensemble === 'all')
+          ? videos
+          : ((!fetching && videos) ? videos.filter(v => v.ensemble === ensemble) : []);
+
+    const filtered = filteredEnsemble ? filteredEnsemble.filter(i => i.title.startsWith(this.state.searchText)) : [] ;
+
+    let video = this.getCurrentVideo(id, filtered);
+    // if id not defined (probably not in category) find one
+    if(!video.id) {
+      video = this.getPrevVideo(id, filtered);
+    }
+    if(!video.id) {
+      video = this.getNextVideo(id, filtered);
+    }
+    const currentId =  video.id || id;
+
+    const prev = this.getPrevVideo(currentId, filtered);
+    const next = this.getNextVideo(currentId, filtered);
+
     const {title, description, media, poster, composer, copyright} = video;
     const ensembles = collectionEnsembles || [];
+    const showAudio = isAudio(media);
+    const showVideo = isVideo(media);
 
     return (
       <div>
@@ -67,15 +120,23 @@ class mainDisplay extends React.Component {
               <p>{description}</p>
             </Grid>
             <Grid item xs={12} sm={8} md={8}>
-              <video className={classes.player}
-                     controls
-                     poster={'/assets/' + ((poster != null) ? poster.toString() : '__unknown___')}
-                src={collectionMedia + media} type="video/mp4">
+              {showVideo && <video className={classes.player}
+                                   controls
+                                   poster={'/assets/' + ((poster != null) ? poster.toString() : '__unknown___')}
+                                   src={collectionMedia + media} type="video/mp4">
                 Your browser does not support the video tag.
-              </video>
+              </video>}
+              {showAudio && <div>
+                <img className={classes.player} src={'/assets/' + ((poster != null) ? poster.toString() : '__unknown___')} />
+                <audio className={classes.audio}
+                                   controls
+                                   src={collectionMedia + media} type="audio/mpeg">
+                Your browser does not support the audio tag.
+                </audio></div>}
             </Grid>
             <Grid item xs={12} sm={4} md={4}>
               {!fetching && <EnsembleSelect ensembles={ensembles} ensemble={ensemble} collection={collection}/>}<br />
+              <Searcher items={filtered} searchText={this.state.searchText} onChange={this.handleSearchTextChange} />
               <PrevNext className={classes.player}
                         item={prev}
                         type={PREV}/>
@@ -101,10 +162,11 @@ function mapStateToProps(state, ownProps) {
   const collection = ownProps.match.params['collection'] || buttons.DEFAULT_COLLECTION;
   const ensemble = ownProps.match.params['ensemble'] || buttons.DEFAULT_ENSEMBLE;
 
-  const params = new URLSearchParams(ownProps.location.search);
-  const id = params.get('id') || DEFAULT_ID;
-
   const videosState = state ? state[collection] : {};
+  const collectionDefault = (videosState && videosState.defaultId) || DEFAULT_ID
+
+  const params = new URLSearchParams(ownProps.location.search);
+  const id = params.get('id') || collectionDefault;
 
   return {
     id: parseInt(id),

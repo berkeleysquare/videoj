@@ -19,21 +19,14 @@ class ensemblePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      menu: null,
     };
   };
 
-  handleClickOpen = () => {
-    this.setState({open: true});
-  };
-
-  handleClose = () => {
-    this.setState({open: false});
-  };
-
   handleChange = id => {
-    this.setState({open: false});
+    this.setState({menu: null});
     this.props.history.push({pathname: '/' + this.props.collection + '/' + id});
+
   }
 
   DEFAULT_ENSEMBLE_ITEM = (
@@ -43,6 +36,9 @@ class ensemblePicker extends React.Component {
 
   render() {
     const {collectionEnsembles, collection, ensemble,  classes} = this.props;
+
+    const toggleMenu = (e) => this.setState({menu: e.currentTarget});
+    const closeMenu = () => this.setState({menu: null});
 
     const ensembles = collectionEnsembles
       ? collectionEnsembles.map(e => {
@@ -56,18 +52,15 @@ class ensemblePicker extends React.Component {
 
     return (
       <div>
-        <Button aria-controls="enseble-menu" aria-haspopup="true" onClick={this.handleClickOpen}>
+        <Button aria-controls="enseble-menu" aria-haspopup="true" onClick={toggleMenu}>
            {'Ensemble: ' + ensembleName}
         </Button>
         <Menu id="enseble-menu"
-              open={this.state.open}
-              onClose={this.handleClose}
-              variant="contained"
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-              }}
-              getContentAnchorEl={null}>{ensembles}</Menu>
+              anchorEl={this.state.menu}
+              open={Boolean(this.state.menu)}
+              onClose={closeMenu}>
+          {ensembles}
+        </Menu>
       </div>
     );
   };

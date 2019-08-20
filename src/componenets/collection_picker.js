@@ -9,31 +9,31 @@ const images = [
   {
     url: '/assets/jkha.png',
     title: 'Halfway Gone',
-    collection: 'jkboxed',
+    collection: 'halfwaygone',
     width: '16%',
   },
   {
     url: '/assets/jkev.png',
     title: 'jk Even Numbered Decades',
-    collection: 'jkboxed',
+    collection: 'jk_even',
     width: '16%',
   },
   {
     url: '/assets/errand.png',
     title: 'Errand Boys for Rhythm',
-    collection: 'jkboxed',
+    collection: 'errand',
     width: '16%',
   },
   {
     url: '/assets/berk1.png',
     title: 'Berkeley Square',
-    collection: 'jkboxed',
+    collection: 'bksq1',
     width: '16%',
   },
   {
     url: '/assets/berk2.png',
     title: 'A Nightingale Sang',
-    collection: 'jkboxed',
+    collection: 'bksq2',
     width: '16%',
   },
   {
@@ -53,7 +53,7 @@ class collectionPicker extends React.Component {
       <div>
         {images.map(image => {
           return (
-            <Link to={'/' + image.collection + '/' + DEFAULT_ENSEMBLE} key={DEFAULT_ENSEMBLE}>
+            <Link to={'/' + image.collection + '/' + DEFAULT_ENSEMBLE} key={'collect_' + image.collection}>
               <ImageButton image={image}/>
             </Link>
         )})}

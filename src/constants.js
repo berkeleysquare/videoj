@@ -6,7 +6,7 @@ export const HEADER_IMAGE = '/assets/boxed_top680.jpg';
 export const HEADER_LINK = '#';
 
 // "bogus db: vend static JSON from /assets/data
-export const DATA_ENDPOINT = '/assets/data/'
+export const DATA_ENDPOINT = '/assets/data/';
 
 export const JKBOXED = 'jkboxed';
 export const COFFEEHOUSE = 'coffeehouse';
@@ -14,3 +14,26 @@ export const BERKELEYSQUARE = 'berkeleysquare';
 export const JK_SOLO = 'jk';
 export const DEFAULT_COLLECTION = JKBOXED;
 export const DEFAULT_ENSEMBLE = 'all';
+
+export const video_formats = ['mp4'];
+export const audio_formats = ['mp3'];
+
+export const isVideo = name => {
+  let ret = false;
+  if (name) {
+    video_formats.forEach(n => {
+      if (name.endsWith(n)) {ret = true};
+    });
+  }
+  return ret;
+};
+
+export const isAudio = name => {
+  let ret = false;
+  if (name) {
+    audio_formats.forEach(n => {
+      if (name.endsWith(n)) {ret = true};
+    });
+  }
+  return ret;
+};

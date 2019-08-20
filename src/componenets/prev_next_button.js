@@ -33,9 +33,10 @@ const styles = theme => ({
 });
 
 const prevNextButton = props => {
-  const {item, type, classes} = props;
+  const {onClick, item, type, classes} = props;
   const {title, poster, id, ensemble} = item;
   const isPrev = type === PREV;
+  const isNext = type === NEXT;
 
   const image = {
     url: '/assets/' + poster,
@@ -49,7 +50,7 @@ const prevNextButton = props => {
         <Link to={{search: 'id=' + id}}>
           <table border="0"><tbody><tr>
             {isPrev && <td>
-              <Button aria-label={type} className={classes.button}>
+              <Button aria-label={type} className={classes.button} onClick={onClick}>
                 <PrevIcon/>
               </Button>
             </td>}
@@ -58,19 +59,19 @@ const prevNextButton = props => {
                 <ImageButton image={image}/>
               </Hidden>
             </td>
-            {!isPrev && <td>
+            {isNext && <td>
               <Button aria-label={type} className={classes.button}>
                   <NextIcon/>
                 </Button>
             </td>}
           </tr>
-          <tr>
+          {(isNext || isPrev) &&<tr>
             <td colSpan={2}>
               <Hidden smDown implementation='css'>
                 <h5>{ensemble}</h5>
               </Hidden>
               </td>
-          </tr>
+          </tr>}
           </tbody></table>
         </Link>
       </Tooltip>}
