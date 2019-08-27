@@ -33,13 +33,13 @@ const styles = theme => ({
 });
 
 const prevNextButton = props => {
-  const {onClick, item, type, classes} = props;
+  const {onClick, item, type, assets, classes} = props;
   const {title, poster, id, ensemble} = item;
   const isPrev = type === PREV;
   const isNext = type === NEXT;
 
   const image = {
-    url: '/assets/' + poster,
+    url: assets + poster,
     title,
     width: '160px',
   }

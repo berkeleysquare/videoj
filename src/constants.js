@@ -37,3 +37,7 @@ export const isAudio = name => {
   }
   return ret;
 };
+
+export const isYouTube = name => (name && name.startsWith('YouTube:'));
+
+export const isVimeo = name => (name && name.startsWith('Vimeo:'));

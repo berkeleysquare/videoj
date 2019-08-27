@@ -13,7 +13,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
 import * as buttons from '../constants'
-import {isAudio, isVideo} from '../constants'
+import {isAudio, isVideo, isYouTube, isVimeo} from '../constants'
 import {fetchResource, isFetching, getDataArray} from '../store/actions'
 
 const styles = theme => ({
@@ -86,7 +86,20 @@ class mainDisplay extends React.Component {
   };
 
   render() {
-    const {fetching, collectionEnsembles, videos, id, ensemble, collection, collectionTitle, collectionDescription, collectionMedia, classes} = this.props;
+    const {
+      fetching,
+      collectionAssets,
+      collectionEnsembles,
+      videos,
+      id,
+      ensemble,
+      collection,
+      collectionTitle,
+      collectionDescription,
+      collectionMedia,
+      classes} = this.props;
+
+    console.log('collectionAssets', collectionAssets)
 
     const filteredEnsemble = (ensemble === 'all')
           ? videos
@@ -113,6 +126,10 @@ class mainDisplay extends React.Component {
     const ensembles = collectionEnsembles || [];
     const showAudio = isAudio(media);
     const showVideo = isVideo(media);
+    const showYouTube = isYouTube(media);
+    const showVimeo = isVimeo(media);
+    const youTubeUrl = media => 'https://www.youtube.com/embed/' + media.split(':')[1]
+    const vimeoUrl = media => 'https://player.vimeo.com/video/' + media.split(':')[1]
 
     return (
       <div>
@@ -125,27 +142,35 @@ class mainDisplay extends React.Component {
             <Grid item xs={12} sm={8} md={8}>
               {showVideo && <video className={classes.player}
                                    controls
-                                   poster={'/assets/' + ((poster != null) ? poster.toString() : '__unknown___')}
+                                   poster={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')}
                                    src={collectionMedia + media} type="video/mp4">
                 Your browser does not support the video tag.
               </video>}
               {showAudio && <div>
-                <img className={classes.player} src={'/assets/' + ((poster != null) ? poster.toString() : '__unknown___')} />
+                <img className={classes.player} src={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')} />
                 <audio className={classes.audio}
                                    controls
                                    src={collectionMedia + media} type="audio/mpeg">
                 Your browser does not support the audio tag.
                 </audio></div>}
+              {showYouTube && <div>
+                <iframe className={classes.player} src={youTubeUrl(media)}></iframe>
+              </div>}
+              {showVimeo && <div>
+                <iframe className={classes.player} src={vimeoUrl(media)} allow="fullscreen" allowfullscreen></iframe>
+              </div>}
             </Grid>
             <Grid item xs={12} sm={4} md={4}>
               {!fetching && <EnsembleSelect ensembles={ensembles} ensemble={ensemble} collection={collection}/>}<br />
               <Searcher items={filtered} searchText={this.state.searchText} onChange={this.handleSearchTextChange} />
               <PrevNext className={classes.player}
                         item={prev}
+                        assets={collectionAssets}
                         type={PREV}/>
               <br />
               <PrevNext className={classes.player}
                         item={next}
+                        assets={collectionAssets}
                         type={NEXT}/>
             </Grid>
             <Grid item xs={12} sm={9} md={6} className={classes.titleContent}>
@@ -165,7 +190,7 @@ function mapStateToProps(state, ownProps) {
   const collection = ownProps.match.params['collection'] || buttons.DEFAULT_COLLECTION;
   const ensemble = ownProps.match.params['ensemble'] || buttons.DEFAULT_ENSEMBLE;
 
-  const videosState = state ? state[collection] : {};
+  const videosState = state[collection] || {};
   const collectionDefault = (videosState && videosState.defaultId) || DEFAULT_ID
 
   const params = new URLSearchParams(ownProps.location.search);
@@ -175,10 +200,11 @@ function mapStateToProps(state, ownProps) {
     id: parseInt(id),
     collection,
     ensemble,
-    collectionTitle: videosState ? videosState.title : '',
-    collectionDescription: videosState ? videosState.description : '',
-    collectionMedia: videosState ? videosState.media : '',
-    collectionEnsembles: videosState ? videosState.ensembles : [],
+    collectionTitle: videosState.title || '',
+    collectionDescription: videosState.description || '',
+    collectionMedia: videosState.media || '',
+    collectionAssets: videosState.assets || '/assets/',
+    collectionEnsembles: videosState.ensembles || [],
     videos: getDataArray(videosState),
     fetching: isFetching([videosState])
   };
