@@ -10,12 +10,11 @@ const buttonStyles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    minWidth: 300,
     width: '100%',
   },
   image: {
     position: 'relative',
-    height: 90,
+    height: 120,
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
       height: 100,

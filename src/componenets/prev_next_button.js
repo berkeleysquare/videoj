@@ -17,14 +17,14 @@ const styles = theme => ({
   panel: {
     marginRight: '10px',
     backgroundColor: '#eadbc5',
-    minHeight: '100px'
+    minHeight: '120px'
   },
-  button: {
+  navButton: {
     background: '#93887a',
-    width: '50px',
-    height: '90px',
+    width: '200px',
+    height: '30px',
     color: '#eee',
-    marginRight: '10px',
+    marginRight: '2px',
     backgroundColor: '#93887a',
     '&:hover': {
       backgroundColor: '#ddd',
@@ -41,37 +41,31 @@ const prevNextButton = props => {
   const image = {
     url: assets + poster,
     title,
-    width: '160px',
+    width: '200px',
   }
  ;
   return (
     <div className={classes.panel}>
       {id && <Tooltip title={type + ': ' + title}>
         <Link to={{search: 'id=' + id}}>
-          <table border="0"><tbody><tr>
-            {isPrev && <td>
-              <Button aria-label={type} className={classes.button} onClick={onClick}>
+          <table border="0"><tbody>
+            {isPrev && <tr><td>
+              <Button aria-label={type} className={classes.navButton} onClick={onClick}>
                 <PrevIcon/>
               </Button>
-            </td>}
-            <td>
-              <Hidden smDown implementation='css'>
-                <ImageButton image={image}/>
-              </Hidden>
-            </td>
-            {isNext && <td>
-              <Button aria-label={type} className={classes.button}>
+            </td></tr>}
+            <tr>
+              <td>
+                <Hidden smDown implementation='css'>
+                  <ImageButton image={image}/>
+                </Hidden>
+              </td>
+            </tr>
+            {isNext && <tr><td>
+              <Button aria-label={type} className={classes.navButton}>
                   <NextIcon/>
                 </Button>
-            </td>}
-          </tr>
-          {(isNext || isPrev) &&<tr>
-            <td colSpan={2}>
-              <Hidden smDown implementation='css'>
-                <h5>{ensemble}</h5>
-              </Hidden>
-              </td>
-          </tr>}
+            </td></tr>}
           </tbody></table>
         </Link>
       </Tooltip>}

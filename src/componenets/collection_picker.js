@@ -10,7 +10,7 @@ const images = [
     url: '/assets/jkha.png',
     title: 'Halfway Gone',
     collection: 'halfwaygone',
-    width: '16%',
+    width: '17%',
   },
   {
     url: '/assets/jkev.png',
@@ -22,13 +22,13 @@ const images = [
     url: '/assets/errand.png',
     title: 'Errand Boys for Rhythm',
     collection: 'errand',
-    width: '16%',
+    width: '17%',
   },
   {
     url: '/assets/berk1.png',
     title: 'Berkeley Square',
     collection: 'bksq1',
-    width: '16%',
+    width: '17%',
   },
   {
     url: '/assets/berk2.png',
@@ -40,7 +40,7 @@ const images = [
     url: '/assets/coffee.png',
     title: 'The Coffeehouse',
     collection: 'coffeehouse',
-    width: '16%',
+    width: '17%',
   },
 ];
 

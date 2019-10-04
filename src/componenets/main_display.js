@@ -24,6 +24,11 @@ const styles = theme => ({
     position: 'absolute',
     top: '80px'
   },
+  prevNext: {
+    marginLeft: '2px',
+    minWidth: '240px',
+    height: '120px',
+  },
   player: {
     marginLeft: '12px',
     width: '480px',
@@ -38,9 +43,29 @@ const styles = theme => ({
     marginBottom: '-36px',
     opacity: '0.5'
   },
-  titleContent: {
+  titleBar: {
+    marginRight: '12px',
     marginLeft: '12px',
-  }
+    marginTop: '6px',
+    marginBottom: '6px',
+    backgroundColor: '#93887a',
+    minHeight: '100px',
+  },
+  titleContent: {
+    marginTop: '10px',
+    marginLeft: '10px',
+    color: '#eee',
+  },
+  copyrightContent: {
+    marginLeft: '12px',
+    color: '#93887a',
+    height: '50px',
+  },
+  collectionBar: {
+    marginLeft: '6px',
+    marginRight: '6px',
+    backgroundColor: '#eee',
+  },
 });
 
 
@@ -99,7 +124,6 @@ class mainDisplay extends React.Component {
       collectionMedia,
       classes} = this.props;
 
-    console.log('collectionAssets', collectionAssets)
 
     const filteredEnsemble = (ensemble === 'all')
           ? videos
@@ -119,6 +143,7 @@ class mainDisplay extends React.Component {
     }
     const currentId =  video.id || id;
 
+
     const prev = this.getPrevVideo(currentId, filtered);
     const next = this.getNextVideo(currentId, filtered);
 
@@ -134,12 +159,18 @@ class mainDisplay extends React.Component {
     return (
       <div>
         <Paper className={classes.video}>
-          <Grid container spacing={0}>
-            <Grid item xs={12} sm={12} md={12} className={classes.titleContent}>
-              <h1>{title}</h1>
-              <p>{description}</p>
+          <Grid container spacing={1}>
+            <Grid item xs={12} className={classes.titleBar}>
+              <div className={classes.titleContent}>
+                <table><tbody><tr><td width="600">
+                  <h1>{title}</h1>
+                  <p>{description}</p>
+                </td>
+                <td>{!fetching && <EnsembleSelect ensembles={ensembles} ensemble={ensemble} collection={collection}/>}</td>
+                </tr></tbody></table>
+              </div>
             </Grid>
-            <Grid item xs={12} sm={8} md={8}>
+            <Grid item xs={8}>
               {showVideo && <video className={classes.player}
                                    controls
                                    poster={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')}
@@ -160,23 +191,22 @@ class mainDisplay extends React.Component {
                 <iframe className={classes.player} src={vimeoUrl(media)} allow="fullscreen" allowfullscreen></iframe>
               </div>}
             </Grid>
-            <Grid item xs={12} sm={4} md={4}>
-              {!fetching && <EnsembleSelect ensembles={ensembles} ensemble={ensemble} collection={collection}/>}<br />
+            <Grid item xs={4}>
               <Searcher items={filtered} searchText={this.state.searchText} onChange={this.handleSearchTextChange} />
-              <PrevNext className={classes.player}
+              <PrevNext className={classes.prevNext}
                         item={prev}
                         assets={collectionAssets}
                         type={PREV}/>
               <br />
-              <PrevNext className={classes.player}
+              <PrevNext className={classes.prevNext}
                         item={next}
                         assets={collectionAssets}
                         type={NEXT}/>
             </Grid>
-            <Grid item xs={12} sm={9} md={6} className={classes.titleContent}>
+            <Grid item xs={12} className={classes.copyrightContent}>
               <h2>{composer + (copyright ? (' ©' + copyright) : '')}</h2>
             </Grid>
-            <Grid item xs={6} sm={6} md={12} className={classes.titleContent}>
+            <Grid item xs={12} className={classes.collectionBar}>
               <CollectionSelect ensembles={ensembles} ensemble={ensemble} collection={collection}/>
             </Grid>
           </Grid>
@@ -191,7 +221,7 @@ function mapStateToProps(state, ownProps) {
   const ensemble = ownProps.match.params['ensemble'] || buttons.DEFAULT_ENSEMBLE;
 
   const videosState = state[collection] || {};
-  const collectionDefault = (videosState && videosState.defaultId) || DEFAULT_ID
+  const collectionDefault = (videosState && videosState.defaultID) || DEFAULT_ID
 
   const params = new URLSearchParams(ownProps.location.search);
   const id = params.get('id') || collectionDefault;
