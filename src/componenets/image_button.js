@@ -21,6 +21,7 @@ const buttonStyles = theme => ({
     },
     '&:hover, &$focusVisible': {
       zIndex: 1,
+      transform: `scale(1.25) !important`,
       '& $imageBackdrop': {
         opacity: 0.15,
       },
@@ -60,7 +61,7 @@ const buttonStyles = theme => ({
     top: 0,
     bottom: 0,
     backgroundColor: theme.palette.common.black,
-    opacity: 0.25,
+    opacity: 0.1,
     transition: theme.transitions.create('opacity'),
   },
   imageTitle: {

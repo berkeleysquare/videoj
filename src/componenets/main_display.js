@@ -8,6 +8,7 @@ import EnsembleSelect from './ensemble_picker';
 import Searcher from './searcher';
 import CollectionSelect from './collection_picker';
 import PrevNext, {PREV, NEXT} from './prev_next_button';
+import PreviewStrip from './preview_strip';
 import {MAIN_WIDTH} from '../constants';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -20,7 +21,7 @@ const styles = theme => ({
   video: {
     elevation: 2,
     width: MAIN_WIDTH,
-    height: '540px',
+    height: '600px',
     position: 'absolute',
     top: '80px'
   },
@@ -59,7 +60,7 @@ const styles = theme => ({
   copyrightContent: {
     marginLeft: '12px',
     color: '#93887a',
-    height: '50px',
+    height: '40px',
   },
   collectionBar: {
     marginLeft: '6px',
@@ -110,6 +111,10 @@ class mainDisplay extends React.Component {
     this.setState({searchText: event.target.value});
   };
 
+  clearSearchText = () => {
+    this.setState({searchText: ''});
+  };
+
   render() {
     const {
       fetching,
@@ -143,10 +148,6 @@ class mainDisplay extends React.Component {
     }
     const currentId =  video.id || id;
 
-
-    const prev = this.getPrevVideo(currentId, filtered);
-    const next = this.getNextVideo(currentId, filtered);
-
     const {title, description, media, poster, composer, copyright} = video;
     const ensembles = collectionEnsembles || [];
     const showAudio = isAudio(media);
@@ -171,6 +172,10 @@ class mainDisplay extends React.Component {
               </div>
             </Grid>
             <Grid item xs={8}>
+              <Searcher items={filtered}
+                        searchText={this.state.searchText}
+                        onChange={this.handleSearchTextChange}
+                        onClear={this.clearSearchText} />
               {showVideo && <video className={classes.player}
                                    controls
                                    poster={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')}
@@ -192,16 +197,7 @@ class mainDisplay extends React.Component {
               </div>}
             </Grid>
             <Grid item xs={4}>
-              <Searcher items={filtered} searchText={this.state.searchText} onChange={this.handleSearchTextChange} />
-              <PrevNext className={classes.prevNext}
-                        item={prev}
-                        assets={collectionAssets}
-                        type={PREV}/>
-              <br />
-              <PrevNext className={classes.prevNext}
-                        item={next}
-                        assets={collectionAssets}
-                        type={NEXT}/>
+              <PreviewStrip items={filtered} assets={collectionAssets} id={currentId}/>
             </Grid>
             <Grid item xs={12} className={classes.copyrightContent}>
               <h2>{composer + (copyright ? (' ©' + copyright) : '')}</h2>
