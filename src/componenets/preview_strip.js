@@ -43,7 +43,15 @@ const styles = theme => ({
 
 });
 
-const showThisMany = 4;
+const showThisMany = 3;
+
+const nowPlaying = title => {
+  return {
+    title,
+    url: '/assets/NowPlaying.jpg',
+  };
+};
+
 
 class previewStrip  extends React.Component {
   constructor(props) {
@@ -54,8 +62,13 @@ class previewStrip  extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    const {id} = this.props;
+    const {id, items} = this.props;
     if (id && (prevProps.id !== id)) {
+      this.setState({indexOffset: 0});
+      return;
+    }
+    // any prop change, reset scroll buttons
+    if (items && prevProps.items && (prevProps.items.length !== items.length)) {
       this.setState({indexOffset: 0});
     }
   }
@@ -85,10 +98,9 @@ class previewStrip  extends React.Component {
       }
     }
     const firstIndex = Math.max(0, currentVideoIndex - 1 + indexOffset);
-    const lastIndex = Math.min(videoCount - 1, currentVideoIndex + 2 + indexOffset);
+    const lastIndex = Math.min(videoCount, firstIndex + showThisMany);
     const show = items.slice(firstIndex, lastIndex);
 
-    console.log('ist, last, count', firstIndex, lastIndex, videoCount)
     const images = show.map(i => {
       return {
         id: i.id,
@@ -107,9 +119,9 @@ class previewStrip  extends React.Component {
         {images.map(image => {
           return (image.id !== id)
             ? (<Link to={{search: 'id=' + image.id}}><ImageButton image={image}/></Link>)
-            : (<div className={classes.nowPlaying}></div>)
+            : (<ImageButton image={nowPlaying(image.title)}/>)
         })}
-        {(lastIndex < videoCount - 1) &&
+        {(lastIndex < videoCount) &&
           <Button className={classes.navButton} key="down" onClick={this.incrementIndex}>
             <DownIcon />
           </Button>}

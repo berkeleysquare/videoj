@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import EnsembleSelect from './ensemble_picker';
 import Searcher from './searcher';
 import CollectionSelect from './collection_picker';
-import PrevNext, {PREV, NEXT} from './prev_next_button';
 import PreviewStrip from './preview_strip';
 import {MAIN_WIDTH} from '../constants';
 import {withStyles} from '@material-ui/core/styles';
@@ -195,12 +194,12 @@ class mainDisplay extends React.Component {
               {showVimeo && <div>
                 <iframe className={classes.player} src={vimeoUrl(media)} allow="fullscreen" allowfullscreen></iframe>
               </div>}
+              <div className={classes.copyrightContent}>
+                <h2>{composer + (copyright ? (' ©' + copyright) : '')}</h2>
+              </div>
             </Grid>
             <Grid item xs={4}>
               <PreviewStrip items={filtered} assets={collectionAssets} id={currentId}/>
-            </Grid>
-            <Grid item xs={12} className={classes.copyrightContent}>
-              <h2>{composer + (copyright ? (' ©' + copyright) : '')}</h2>
             </Grid>
             <Grid item xs={12} className={classes.collectionBar}>
               <CollectionSelect ensembles={ensembles} ensemble={ensemble} collection={collection}/>
