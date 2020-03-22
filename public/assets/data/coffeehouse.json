@@ -5,7 +5,7 @@
   "assets": "http://www.liveatthecoffeehouse.com/assets/",
   "media": "http://www.liveatthecoffeehouse.com/media/",
   "image": "coffee.png",
-  "defaultID": 3110,
+  "defaultID": 3300,
   "ensembles": [
     {
       "id": "jk_solo",
@@ -843,7 +843,7 @@
       "id": 1580,
       "title": "Rusty Metal Box",
       "description": "Cousin Syd sends a guest video of his friends at the historic Blue Bird Cafe in Nashville.  Tom Manning is singing his original composition, Rusty Metal Box. Playing guitar across from him is Martin Young.     ",
-      "ensemble": "live_from_the_bluebird",
+      "ensemble": "from_the_blue_bird",
       "media": "rusty_metal_box.mp4",
       "composer": "Tom Manning",
       "copyright": 0,
@@ -869,7 +869,7 @@
       "id": 1600,
       "title": "Pourin'",
       "description": " Cousin Syd  sent in some superb guest videos from the historic Blue Bird Cafe in Nashville.  Here are his friends Tom Manning, Age McCann and Susan Marshall. The song is called \"Pourin'\"     ",
-      "ensemble": "live_from_the_bluebird",
+      "ensemble": "from_the_blue_bird",
       "media": "pourin.mp4",
       "composer": "",
       "copyright": 0,
@@ -1090,7 +1090,7 @@
       "id": 1770,
       "title": "Wind Beneath my Wings",
       "description": "All our special guests are special at liveatthecoffeehouse.com. But today's is what we in the virtual coffeehouse business call \"a get.\"  Cousin Syd caught  Larry Henley  at the Blue Bird in Nashville, performing a beautiful version of his beautiful song \"Wind Beneath my Wings.\" (Did I mention it was a #1 Billboart Hit?) Mr. Henly graciously agreed to let us post it.      ",
-      "ensemble": "jk_solo",
+      "ensemble": "from_the_blue_bird",
       "media": "Vimeo:16563315",
       "composer": "Larry Henley",
       "copyright": 0,
@@ -3059,6 +3059,45 @@
       "copyright": 1918,
       "poster": "GodBlessAmerica.jpg",
       "recorded": "2019-05-26",
+      "collection": "coffeehouse"
+    },
+    {
+      "_id": 3290,
+      "id": 3290,
+      "title": "Witchcraft",
+      "description": "Every fourth Wednesday, the virtual coffeehouse goes corporeal. Live from Food Truck Night (09/25/2019)",
+      "ensemble": "jk_solo",
+      "media": "Witchcraft_live.mp4",
+      "composer": "Cy Coleman, Carolyn Leigh",
+      "copyright": 1957,
+      "poster": "Witchcraft_live.jpg",
+      "recorded": "2019-09-25",
+      "collection": "coffeehouse"
+    },
+    {
+      "_id": 3300,
+      "id": 3300,
+      "title": "Imagination",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "Imagination.mp4",
+      "composer": "Jimmy Van Heusen and Johnny Burke",
+      "copyright": 1940,
+      "poster": "Imagination.jpg",
+      "recorded": "2019-10-15",
+      "collection": "coffeehouse"
+    },
+    {
+      "_id": 3310,
+      "id": 3310,
+      "title": "You'd Be So Nice to Come To",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "YoudBeSoNice.mp4",
+      "composer": "Cole Porter",
+      "copyright": 1943,
+      "poster": "YoudBeSoNice.jpg",
+      "recorded": "2019-10-15",
       "collection": "coffeehouse"
     }
   ]

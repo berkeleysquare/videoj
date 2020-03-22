@@ -21,6 +21,7 @@ const buttonStyles = theme => ({
     },
     '&:hover, &$focusVisible': {
       zIndex: 1,
+      transition: 'all 500ms',
       transform: `scale(1.25) !important`,
       '& $imageBackdrop': {
         opacity: 0.15,

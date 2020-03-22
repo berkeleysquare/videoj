@@ -28,7 +28,7 @@ const styles = theme => ({
     marginRight: '2px',
     backgroundColor: '#93887a',
     '&:hover': {
-      backgroundColor: '#ddd',
+      backgroundColor: '#ccc',
     }
   },
   nowPlaying: {
@@ -57,19 +57,19 @@ class previewStrip  extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      indexOffset: 0,
+      indexOffset: 1,
     };
   };
 
   componentDidUpdate(prevProps) {
     const {id, items} = this.props;
     if (id && (prevProps.id !== id)) {
-      this.setState({indexOffset: 0});
+      this.setState({indexOffset: 1});
       return;
     }
     // any prop change, reset scroll buttons
     if (items && prevProps.items && (prevProps.items.length !== items.length)) {
-      this.setState({indexOffset: 0});
+      this.setState({indexOffset: 1});
     }
   }
 

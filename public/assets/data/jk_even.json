@@ -1,7 +1,8 @@
 {
   "title": "jk_even",
   "description": "",
-  "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/",
+  "assets": "http://www.liveatthecoffeehouse.com/assets/",
+  "media": "http://www.liveatthecoffeehouse.com/media/",
   "ensembles": [
     {
       "id": "jk_solo",

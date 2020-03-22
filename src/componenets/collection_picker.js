@@ -4,7 +4,6 @@ import {withRouter, Link} from 'react-router-dom';
 import ImageButton from './image_button';
 import {DEFAULT_ENSEMBLE, DEFAULT_COLLECTION} from '../constants'
 
-
 const images = [
   {
     url: '/assets/jkha.png',

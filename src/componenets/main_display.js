@@ -166,7 +166,10 @@ class mainDisplay extends React.Component {
                   <h1>{title}</h1>
                   <p>{description}</p>
                 </td>
-                <td>{!fetching && <EnsembleSelect ensembles={ensembles} ensemble={ensemble} collection={collection}/>}</td>
+                <td>{!fetching && <EnsembleSelect ensembles={ensembles}
+                                                  ensemble={ensemble}
+                                                  collection={collection}/>}
+                </td>
                 </tr></tbody></table>
               </div>
             </Grid>

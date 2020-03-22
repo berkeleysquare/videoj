@@ -1,7 +1,8 @@
 {
   "title": "bksq",
   "description": "",
-  "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/",
+  "assets": "http://www.liveatthecoffeehouse.com/assets/",
+  "media": "http://www.liveatthecoffeehouse.com/media/",
   "ensembles": [
     {
       "id": "berkeleysquare",
@@ -10,7 +11,7 @@
     },
     {
       "id": "holiday",
-      "text": "Berkeley Square Christmas",
+      "text": "Holiday",
       "collection": "bksq"
     }
   ],
@@ -169,6 +170,32 @@
       "copyright": 1946,
       "poster": "bksq_inside.jpg",
       "recorded": "2013-01-08",
+      "collection": "bksq"
+    },
+    {
+      "_id": 1120,
+      "id": 1120,
+      "title": "Rockin' Around the Christmas Tree",
+      "description": "",
+      "ensemble": "holiday",
+      "media": "xmas00_rockin_around.mp3",
+      "composer": "Johnny Marks",
+      "copyright": 1958,
+      "poster": "eb_xmas00.jpg",
+      "recorded": "2000-01-08",
+      "collection": "bksq"
+    },
+    {
+      "_id": 1130,
+      "id": 1130,
+      "title": "Rudolph, the Red Nosed Reindeer",
+      "description": "",
+      "ensemble": "holiday",
+      "media": "xmas00_rudolph.mp3",
+      "composer": "Johnny Marks",
+      "copyright": 1949,
+      "poster": "eb_xmas00.jpg",
+      "recorded": "2000-01-08",
       "collection": "bksq"
     }
   ]

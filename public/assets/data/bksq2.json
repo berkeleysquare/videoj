@@ -1,7 +1,11 @@
 {
-  "title": "bksq2",
-  "description": "",
-  "media": "https://liveatthecoffeehouse.s3-us-west-2.amazonaws.com/www/media/",
+  "title": "Berkeley Square: A Nightingale Sang",
+  "collection": "bksq2",
+  "description": "2002",
+  "assets": "http://www.liveatthecoffeehouse.com/assets/",
+  "media": "http://www.liveatthecoffeehouse.com/media/",
+  "image": "berk2.png",
+  "defaultID": 1000,
   "ensembles": [
     {
       "id": "berkeleysquare",
@@ -208,6 +212,58 @@
       "copyright": 1943,
       "poster": "bksq2_back.jpg",
       "recorded": "2013-01-07",
+      "collection": "bksq2"
+    },
+    {
+      "_id": 1150,
+      "id": 1150,
+      "title": "Christmas Song",
+      "description": "    ",
+      "ensemble": "xmas",
+      "media": "xmas_song.mp3",
+      "composer": "Mel Torme, Robert Wells",
+      "copyright": 1945,
+      "poster": "bksq_xmas.jpg",
+      "recorded": "2002-12-07",
+      "collection": "bksq2"
+    },
+    {
+      "_id": 1160,
+      "id": 1160,
+      "title": "The Christmas Waltz",
+      "description": "    ",
+      "ensemble": "xmas",
+      "media": "xmas_waltz.mp3",
+      "composer": "Sammy Cahn, Jule Styne",
+      "copyright": 1954,
+      "poster": "bksq_xmas.jpg",
+      "recorded": "2002-12-07",
+      "collection": "bksq2"
+    },
+    {
+      "_id": 1170,
+      "id": 1170,
+      "title": "I'll be Home for Christmas",
+      "description": "    ",
+      "ensemble": "xmas",
+      "media": "xmas_home.mp3",
+      "composer": "Kim Gannon, Walter Kent",
+      "copyright": 1943,
+      "poster": "bksq_xmas.jpg",
+      "recorded": "2002-12-07",
+      "collection": "bksq2"
+    },
+    {
+      "_id": 1180,
+      "id": 1180,
+      "title": "Christmas Is",
+      "description": "    ",
+      "ensemble": "xmas",
+      "media": "xmas_is.mp3",
+      "composer": "Percy Faith, Spence Maxwell",
+      "copyright": 1966,
+      "poster": "bksq_xmas.jpg",
+      "recorded": "2002-12-07",
       "collection": "bksq2"
     }
   ]

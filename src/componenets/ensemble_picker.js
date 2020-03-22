@@ -10,7 +10,8 @@ import {DEFAULT_ENSEMBLE, DEFAULT_COLLECTION} from '../constants'
 const styles = theme => ({
   titleContent: {
     marginRight: '15px',
-    fontSize: '11;'
+    fontSize: '11;',
+    color: '#eee',
   }
 });
 
@@ -53,7 +54,7 @@ class ensemblePicker extends React.Component {
     return (
       <div>
         <Button aria-controls="enseble-menu" aria-haspopup="true" onClick={toggleMenu}>
-           {'Ensemble: ' + ensembleName}
+          <span className={classes.titleContent}>{'Ensemble: ' + ensembleName}</span>
         </Button>
         <Menu id="enseble-menu"
               anchorEl={this.state.menu}
