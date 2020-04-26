@@ -1,6 +1,8 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {Route, BrowserRouter} from 'react-router-dom';
+import HomeDisplay from './componenets/home_display';
+import CollectionsDisplay from './componenets/collections_display';
 import MainDisplay from './componenets/main_display';
 import HeaderDisplay from './componenets/header';
 import * as constants from './constants';
@@ -10,11 +12,11 @@ function App() {
 
   return (
     <Provider store={configureStore(configureStore({'resources': {}}))}>
-      <HeaderDisplay title={constants.TITLE} imgSrc={constants.HEADER_IMAGE} linkTo={constants.HEADER_LINK} />
       <BrowserRouter basename='/'>
-        <Route exact path='/' component={MainDisplay} />
-        <Route exact path='/:collection' component={MainDisplay} />
-        <Route path='/:collection/:ensemble' component={MainDisplay} />
+        <Route exact path='/' component={HomeDisplay} />
+        <Route exact path='/albums' component={CollectionsDisplay} />
+        <Route exact path='/collection/:collection' component={MainDisplay} />
+        <Route exact path='/collection/:collection/:ensemble' component={MainDisplay} />
       </BrowserRouter>
     </Provider>
   );

@@ -39,7 +39,7 @@ const images = [
     url: '/assets/coffee.png',
     title: 'The Coffeehouse',
     collection: 'coffeehouse',
-    width: '17%',
+    width: '16%',
   },
 ];
 
@@ -52,7 +52,7 @@ class collectionPicker extends React.Component {
       <div>
         {images.map(image => {
           return (
-            <Link to={'/' + image.collection + '/' + DEFAULT_ENSEMBLE} key={'collect_' + image.collection}>
+            <Link to={'/collection/' + image.collection + '/' + DEFAULT_ENSEMBLE} key={'collect_' + image.collection}>
               <ImageButton image={image}/>
             </Link>
         )})}
