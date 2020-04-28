@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
 
+import TitleBar from './title_bar';
+
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import EnsembleSelect from './ensemble_picker';
@@ -35,41 +37,134 @@ const styles = theme => ({
     height: '360px',
   },
   audio: {
-    marginLeft: '12px',
-    width: '480px',
-    height: '36px',
-    position: 'relative',
-    top: '-36px',
-    marginBottom: '-36px',
+    position: 'absolute',
+    width: '556px',
+    height: '50px',
+    left: '22px',
+    top: '481px',
     opacity: '0.5'
   },
-  titleBar: {
-    marginRight: '12px',
-    marginLeft: '12px',
-    marginTop: '6px',
-    marginBottom: '6px',
-    backgroundColor: '#93887a',
-    minHeight: '100px',
+  blankBack: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 40%',
+    backgroundImage: `url(/assets/blank_back.jpg)`,
   },
-  titleContent: {
-    marginTop: '10px',
-    marginLeft: '10px',
-    color: '#eee',
+  songList: {
+    position: 'absolute',
+    left: 20,
+    right: 20,
+    bottom: 100,
   },
-  copyrightContent: {
-    marginLeft: '12px',
-    color: '#93887a',
-    height: '40px',
+  player: {
+    position: 'absolute',
+    width: '556px',
+    height: '370px',
+    left: '22px',
+    top: '161px',
   },
-  collectionBar: {
-    marginLeft: '6px',
-    marginRight: '6px',
-    backgroundColor: '#eee',
+  ensemblePick: {
+    position: 'absolute',
+    width: '150px',
+    height: '480px',
+    right: '20px',
+    top: '115px',
+  },
+  collectionTitle: {
+    position: 'absolute',
+    width: '555px',
+    height: '26px',
+    left: '23px',
+    top: '115px',
+
+    fontFamily: 'Raleway',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: '34px',
+    lineHeight: '40px',
+    display: 'flex',
+    alignItems: 'flex-end',
+
+    color: '#FFFFFF',
+  },
+  collectionTitle: {
+    position: 'absolute',
+    width: '555px',
+    height: '26px',
+    left: '23px',
+    top: '115px',
+
+    fontFamily: 'Raleway',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: '30px',
+    lineHeight: '36px',
+    display: 'flex',
+    alignItems: 'flex-end',
+
+    color: '#FFFFFF',
+  },
+  collectionDescrip: {
+    position: 'absolute',
+    width: '475px',
+    height: '329px',
+    left: '612px',
+    top: '173px',
+
+    display: 'flex',
+    flexDirection: 'column',
+    color: '#FFFFFF',
+  },
+  collectionDescripTitle : {
+    fontFamily: 'Raleway',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: '20px',
+    lineHeight: '24px',
+    marginTop: '2px',
+    marginBottom: '2px',
+  },
+  collectionDescripText : {
+    fontFamily: 'Raleway',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '20px',
+    lineHeight: '24px',
+    marginTop: '2px',
+    marginBottom: '20px',
   },
 });
 
-
 export const DEFAULT_ID = 1000;
+
+export const DisplayItem = props => {
+  if (props.text && props.text.length) {
+    return (
+      <div className={props.className}>{props.text}</div>
+    );
+  }
+  return (<div></div>);
+};
+
+export const DisplayItems = props => {
+  const children = [];
+  props.items.forEach( i => {
+    if (i.text && i.text.length) {
+      children.push(<p className={props.classTitle}>{i.title}</p>);
+      children.push(<p className={props.classText}>{i.text}</p>);
+    }
+  });
+  return(
+    <div className={props.className}>
+      {children}
+    </div>
+  );
+};
+
 
 class mainDisplay extends React.Component {
   constructor(props) {
@@ -156,59 +251,68 @@ class mainDisplay extends React.Component {
     const youTubeUrl = media => 'https://www.youtube.com/embed/' + media.split(':')[1]
     const vimeoUrl = media => 'https://player.vimeo.com/video/' + media.split(':')[1]
 
+    const ensembleControl = (!fetching && collection) ?
+      (
+      <EnsembleSelect ensembles={ensembles}
+                      ensemble={ensemble}
+                      collection={collection}/>
+      )
+      : (<div></div>);
+
+    const searchControl = (!fetching && collection) ?
+      (
+      <Searcher items={filtered}
+                searchText={this.state.searchText}
+                onChange={this.handleSearchTextChange}
+                onClear={this.clearSearchText} />
+  )
+  : (<div></div>);
+
     return (
-      <div>
-        <Paper className={classes.video}>
-          <Grid container spacing={1}>
-            <Grid item xs={12} className={classes.titleBar}>
-              <div className={classes.titleContent}>
-                <table><tbody><tr><td width="600">
-                  <h1>{title}</h1>
-                  <p>{description}</p>
-                </td>
-                <td>{!fetching && <EnsembleSelect ensembles={ensembles}
-                                                  ensemble={ensemble}
-                                                  collection={collection}/>}
-                </td>
-                </tr></tbody></table>
-              </div>
-            </Grid>
-            <Grid item xs={8}>
-              <Searcher items={filtered}
-                        searchText={this.state.searchText}
-                        onChange={this.handleSearchTextChange}
-                        onClear={this.clearSearchText} />
-              {showVideo && <video className={classes.player}
-                                   controls
-                                   poster={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')}
-                                   src={collectionMedia + media} type="video/mp4">
-                Your browser does not support the video tag.
+      <div className={classes.blankBack}>
+        <TitleBar collection={collection}
+                  ensembleControl={ensembleControl}
+                  searchControl={searchControl}/>
+        <DisplayItem text={title}
+                     className={classes.collectionTitle} />
+        <DisplayItems
+          items={[
+            {title: 'Ensemble', text: video.ensemble},
+            {title: 'Description', text: description},
+            {title: 'Composer', text: composer + (copyright ? (' ©' + copyright) : '')},
+          ]}
+          className={classes.collectionDescrip}
+          classTitle={classes.collectionDescripTitle}
+          classText={classes.collectionDescripText}
+        />
+        {!fetching && <div className={classes.ensemblePick}>
+
+        </div>}
+        {showVideo && <video className={classes.player}
+                   controls
+                   poster={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')}
+                   src={collectionMedia + media} type="video/mp4">
+                  Your browser does not support the video tag.
               </video>}
-              {showAudio && <div>
-                <img className={classes.player} src={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')} />
-                <audio className={classes.audio}
-                                   controls
-                                   src={collectionMedia + media} type="audio/mpeg">
-                Your browser does not support the audio tag.
-                </audio></div>}
-              {showYouTube && <div>
-                <iframe className={classes.player} src={youTubeUrl(media)}></iframe>
-              </div>}
-              {showVimeo && <div>
-                <iframe className={classes.player} src={vimeoUrl(media)} allow="fullscreen" allowfullscreen></iframe>
-              </div>}
-              <div className={classes.copyrightContent}>
-                <h2>{composer + (copyright ? (' ©' + copyright) : '')}</h2>
-              </div>
-            </Grid>
-            <Grid item xs={4}>
-              <PreviewStrip items={filtered} assets={collectionAssets} id={currentId}/>
-            </Grid>
-            <Grid item xs={12} className={classes.collectionBar}>
-              <CollectionSelect ensembles={ensembles} ensemble={ensemble} collection={collection}/>
-            </Grid>
-          </Grid>
-        </Paper>
+        {showAudio && <div>
+          <img className={classes.player} src={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')} />
+          <audio className={classes.audio}
+                             controls
+                             src={collectionMedia + media} type="audio/mpeg">
+          Your browser does not support the audio tag.
+          </audio></div>}
+          {showYouTube && <div>
+            <iframe className={classes.player} src={youTubeUrl(media)}></iframe>
+          </div>}
+          {showVimeo && <div>
+            <iframe className={classes.player} src={vimeoUrl(media)} allow="fullscreen" allowfullscreen></iframe>
+          </div>}
+
+        <div  className={classes.songList}>
+          <PreviewStrip items={filtered}
+                        assets={collectionAssets}
+                        id={currentId}/>
+        </div>
       </div>
     );
   };

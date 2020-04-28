@@ -8,12 +8,17 @@ import {withStyles} from '@material-ui/core/styles';
 import {DEFAULT_ENSEMBLE, DEFAULT_COLLECTION} from '../constants'
 
 const styles = theme => ({
-  titleContent: {
+  ensemblePick: {
+    marginLeft: '15px',
     marginRight: '15px',
     fontSize: '11;',
-    color: '#eee',
-  }
-});
+    width: '250px',
+    color: '#ffffff',
+  },
+  ensembleButt: {
+    fontSize: '11;',
+    color: '#FFFFFF',
+  },});
 
 
 class ensemblePicker extends React.Component {
@@ -26,12 +31,12 @@ class ensemblePicker extends React.Component {
 
   handleChange = id => {
     this.setState({menu: null});
-    this.props.history.push({pathname: '/' + this.props.collection + '/' + id});
+    this.props.history.push({pathname: '/collection/' + this.props.collection + '/' + id});
 
   }
 
   DEFAULT_ENSEMBLE_ITEM = (
-    <Link to={'/' + this.props.collection + '/' + DEFAULT_ENSEMBLE} key={DEFAULT_ENSEMBLE}>
+    <Link to={'/collection/' + this.props.collection + '/' + DEFAULT_ENSEMBLE} key={DEFAULT_ENSEMBLE}>
       <MenuItem key={DEFAULT_ENSEMBLE} value={DEFAULT_ENSEMBLE}  onClick={this.handleChange.bind(this, DEFAULT_ENSEMBLE)}>All</MenuItem>
     </Link>);
 
@@ -52,9 +57,9 @@ class ensemblePicker extends React.Component {
       : DEFAULT_ENSEMBLE;
 
     return (
-      <div>
+      <div className={classes.ensemblePick}>
         <Button aria-controls="enseble-menu" aria-haspopup="true" onClick={toggleMenu}>
-          <span className={classes.titleContent}>{'Ensemble: ' + ensembleName}</span>
+          <span className={classes.ensembleButt}>{ensembleName}</span>
         </Button>
         <Menu id="enseble-menu"
               anchorEl={this.state.menu}

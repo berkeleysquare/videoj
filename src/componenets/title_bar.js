@@ -33,8 +33,8 @@ const styles = theme => ({
   menuButtons: {
     position: 'absolute',
     top: 1,
-    left: 290,
-    width: 352,
+    left: 190,
+    width: '100%',
     height: 50,
     display: 'flex',
     alignItems: 'flex-end',
@@ -63,7 +63,7 @@ class titleBar extends React.Component {
   };
 
   render() {
-    const {classes} = this.props;
+    const {classes, collection, ensembleControl, searchControl} = this.props;
 
     return (
       <div className={classes.titleBar}>
@@ -78,6 +78,9 @@ class titleBar extends React.Component {
         <div className={classes.menuButtons}>
           <Link to={'/'}><Button className={classes.menuButton}>Home</Button></Link>
           <Link to={'/albums/'}><Button className={classes.menuButton}>Collections</Button></Link>
+          {collection && <Button className={classes.menuButton}>{collection}</Button>}
+          {ensembleControl}
+          {searchControl}
         </div>
 
       </div>

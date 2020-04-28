@@ -34,7 +34,6 @@ const styles = theme => ({
   },
 });
 
-
 export const DEFAULT_ID = 1000;
 
 class homeDisplay extends React.Component {

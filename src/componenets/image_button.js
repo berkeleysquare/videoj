@@ -81,13 +81,14 @@ const buttonStyles = theme => ({
 });
 
 const imageButton = props => {
-  const {image, classes} = props;
+  const {image, onButtonEnter, nowPlaying, classes} = props;
 
   return (<ButtonBase
     focusRipple
     key={image.title}
     className={classes.image}
     focusVisibleClassName={classes.focusVisible}
+    onMouseEnter={onButtonEnter}
     style={{
       width: image.width,
     }}
@@ -106,7 +107,7 @@ const imageButton = props => {
                 color="inherit"
                 className={classes.imageTitle}
               >
-                {image.title}
+                {nowPlaying ? 'NOW PLAYING' : image.title}
                 <span className={classes.imageMarked}/>
               </Typography>
             </span>

@@ -5,36 +5,36 @@ import Button from '@material-ui/core/Button';
 import {withStyles} from '@material-ui/core/styles';
 import {Link, withRouter} from 'react-router-dom';
 
-import UpIcon from '@material-ui/icons/ArrowUpwardRounded';
-import DownIcon from '@material-ui/icons/ArrowDownwardRounded'
+import UpIcon from '@material-ui/icons/ArrowBackIos';
+import DownIcon from '@material-ui/icons/ArrowForwardIos'
 import Tooltip from '@material-ui/core/Tooltip';
 
-export const NEXT = 'Next;'
+export const NEXT = 'Next';
 export const PREV = 'Prev';
 
 const styles = theme => ({
   panel: {
     marginRight: '10px',
-    height: '100%',
-    width: '200px',
+    height: '120px',
+    width: '100%',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'flex-end',
   },
   navButton: {
-    background: '#93887a',
-    width: '200px',
-    height: '30px',
+    backgroundColor: 'rgba(90, 33, 211, 0.6)',
+    width: '30px',
+    height: '120px',
     color: '#eee',
     marginRight: '2px',
-    backgroundColor: '#93887a',
+    opacity: 0.5,
     '&:hover': {
-      backgroundColor: '#ccc',
+      opacity: 1.0,
     }
   },
   nowPlaying: {
     backgroundImage: 'url("/assets/NowPlaying.jpg")',
     width: '200px',
-    height: '60px',
+    height: '120px',
     opacity: 0.9,
     '&:hover': {
       opacity: 1.0,
@@ -43,7 +43,7 @@ const styles = theme => ({
 
 });
 
-const showThisMany = 3;
+const showThisMany = 5;
 
 const nowPlaying = title => {
   return {
@@ -97,7 +97,8 @@ class previewStrip  extends React.Component {
         break;
       }
     }
-    const firstIndex = Math.max(0, currentVideoIndex - 1 + indexOffset);
+    const padSize = Math.floor(showThisMany / 2);
+    const firstIndex = Math.max(0, currentVideoIndex - padSize + indexOffset);
     const lastIndex = Math.min(videoCount, firstIndex + showThisMany);
     const show = items.slice(firstIndex, lastIndex);
 
@@ -112,14 +113,16 @@ class previewStrip  extends React.Component {
 
     return (
       <div className={classes.panel}>
-        {(firstIndex > 0) &&
-          <Button className={classes.navButton} key="up" onClick={this.decrementIndex}>
-            <UpIcon />
-          </Button>}
+        <Button className={classes.navButton}
+                key="up"
+                onClick={this.decrementIndex}
+                disabled={firstIndex <= 0}>
+          {(firstIndex > 0) && <UpIcon />}
+        </Button>
         {images.map(image => {
-          return (image.id !== id)
-            ? (<Link to={{search: 'id=' + image.id}}><ImageButton image={image}/></Link>)
-            : (<ImageButton image={nowPlaying(image.title)}/>)
+          return (<Link to={{search: 'id=' + image.id}}>
+            <ImageButton image={image} nowPlaying={image.id === id}/>
+          </Link>)
         })}
         {(lastIndex < videoCount) &&
           <Button className={classes.navButton} key="down" onClick={this.incrementIndex}>

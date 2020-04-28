@@ -28,7 +28,7 @@ export function fetchResource(resource, id, options = {}) {
   const encodedResource = resource.split('/').map(x => encodeURIComponent(x)).join('/');
   const resourceComponent = id ? encodedResource + '/' + encodeURIComponent(id) : encodedResource;
   const endpoint = `${customEndpoint}${resourceComponent}${suffix}`;
-  console.log('endpoint', endpoint)
+
   return dispatch => {
     dispatch({type: requestType, resource, id});
 
