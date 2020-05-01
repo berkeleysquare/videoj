@@ -20,7 +20,6 @@ const styles = theme => ({
     color: '#FFFFFF',
   },});
 
-
 class ensemblePicker extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +40,7 @@ class ensemblePicker extends React.Component {
     </Link>);
 
   render() {
-    const {collectionEnsembles, collection, ensemble,  classes} = this.props;
+    const {collectionEnsembles, ensemble,  classes} = this.props;
 
     const toggleMenu = (e) => this.setState({menu: e.currentTarget});
     const closeMenu = () => this.setState({menu: null});

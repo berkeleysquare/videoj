@@ -3,11 +3,10 @@ import ImageButton from './image_button';
 
 import Button from '@material-ui/core/Button';
 import {withStyles} from '@material-ui/core/styles';
-import {Link, withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import UpIcon from '@material-ui/icons/ArrowBackIos';
 import DownIcon from '@material-ui/icons/ArrowForwardIos'
-import Tooltip from '@material-ui/core/Tooltip';
 
 export const NEXT = 'Next';
 export const PREV = 'Prev';
@@ -45,31 +44,25 @@ const styles = theme => ({
 
 const showThisMany = 5;
 
-const nowPlaying = title => {
-  return {
-    title,
-    url: '/assets/NowPlaying.jpg',
-  };
-};
-
-
 class previewStrip  extends React.Component {
   constructor(props) {
     super(props);
+
+    // now playing starts out in pos 2; skip from 1-3
     this.state = {
-      indexOffset: 1,
+      indexOffset: 2,
     };
   };
 
   componentDidUpdate(prevProps) {
     const {id, items} = this.props;
     if (id && (prevProps.id !== id)) {
-      this.setState({indexOffset: 1});
+      this.setState({indexOffset: 2});
       return;
     }
     // any prop change, reset scroll buttons
     if (items && prevProps.items && (prevProps.items.length !== items.length)) {
-      this.setState({indexOffset: 1});
+      this.setState({indexOffset: 2});
     }
   }
 

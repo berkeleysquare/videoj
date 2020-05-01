@@ -1,7 +1,6 @@
 import React from 'react';
-import {withRouter, Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import {DEFAULT_ENSEMBLE, DEFAULT_COLLECTION} from '../constants'
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 

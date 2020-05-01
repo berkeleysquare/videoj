@@ -7,6 +7,7 @@ import {DEFAULT_ENSEMBLE, DEFAULT_COLLECTION} from '../constants'
 const images = [
   {
     url: '/assets/jkha.png',
+    poster: '/assets/poster_halfgone.jpg',
     title: 'Halfway Gone',
     artist: 'jk & friends',
     date: 'Released May 1982',
@@ -16,6 +17,7 @@ const images = [
   },
   {
     url: '/assets/jkev.png',
+    poster: '/assets/poster_jkeven.jpg',
     title: 'jk Even Numbered Decades',
     artist: 'jk',
     date: '1984-1996',
@@ -25,6 +27,7 @@ const images = [
   },
   {
     url: '/assets/errand.png',
+    poster: '/assets/poster_eb.jpg',
     title: 'Errand Boys for Rhythm',
     artist: 'Errand Boys for Ryhthm',
     date: '1996-1998',
@@ -34,6 +37,7 @@ const images = [
   },
   {
     url: '/assets/berk1.png',
+    poster: '/assets/poster_bksq.jpg',
     title: 'Berkeley Square',
     artist: 'Berkeley Square',
     date: 'Released 1998',
@@ -43,6 +47,7 @@ const images = [
   },
   {
     url: '/assets/berk2.png',
+    poster: '/assets/poster_bksq2.jpg',
     title: 'A Nightingale Sang',
     artist: 'Berkeley Square',
     date: 'Released 2001',
@@ -52,6 +57,7 @@ const images = [
   },
   {
     url: '/assets/coffee.png',
+    poster: '/assets/coffeehouse.jpg',
     title: 'The Coffeehouse',
     artist: 'jk & freinds',
     date: '2009-present',
@@ -72,7 +78,7 @@ export const getCollectionDescription = collection => {
 class collectionPicker extends React.Component {
 
   render() {
-    const {collectionEnsembles, collection, ensemble, onButtonEnter, classes} = this.props;
+    const {onButtonEnter} = this.props;
 
     return (
       <div>

@@ -4,8 +4,6 @@ import {Route, BrowserRouter} from 'react-router-dom';
 import HomeDisplay from './componenets/home_display';
 import CollectionsDisplay from './componenets/collections_display';
 import MainDisplay from './componenets/main_display';
-import HeaderDisplay from './componenets/header';
-import * as constants from './constants';
 import configureStore from './store/store'
 
 function App() {

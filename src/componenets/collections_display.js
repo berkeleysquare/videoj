@@ -1,25 +1,11 @@
 import React from 'react';
-import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
 
 import CollectionPicker, {getCollectionDescription} from './collection_picker';
-
 import {DisplayItem, DisplayItems} from './main_display';
-
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import EnsembleSelect from './ensemble_picker';
-import Searcher from './searcher';
-import PreviewStrip from './preview_strip';
-import {MAIN_WIDTH} from '../constants';
-import {withStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-
 import TitleBar from './title_bar';
 
-import * as buttons from '../constants'
-import {isAudio, isVideo, isYouTube, isVimeo} from '../constants'
-import {fetchResource, isFetching, getDataArray} from '../store/actions'
+import {withStyles} from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
@@ -126,7 +112,6 @@ class collectionsDisplay extends React.Component {
     const {collection} = this.state;
     const collectionDescription = getCollectionDescription(collection);
 
-    console.log('collection', collection)
     return (
       <div className={classes.blankBack}>
         <TitleBar />
@@ -143,7 +128,7 @@ class collectionsDisplay extends React.Component {
             classText={classes.collectionDescripText}
           />
         { collectionDescription.url &&
-          <img className={classes.player} src={collectionDescription.url} />}
+          <img className={classes.player} alt={collectionDescription.poster} src={collectionDescription.poster} />}
         <div className={classes.collections}>
           <CollectionPicker className={classes.collections}
             onButtonEnter={this.handleButtonEnter && this.handleButtonEnter.bind(this)}/>

@@ -28,7 +28,7 @@ class searcher extends React.Component {
   };
 
   render() {
-    const {items, searchText, onChange, onClear, classes} = this.props;
+    const {searchText, onChange, onClear, classes} = this.props;
 
     return (
       <div className={classes.searchBar}>

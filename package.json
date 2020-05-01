@@ -2,7 +2,7 @@
   "name": "videoj",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://jkboxed.com/newsite",
+  "homepage": "https://jkboxed.s3-us-west-2.amazonaws.com/",
   "dependencies": {
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",

@@ -1,20 +1,8 @@
 import React from 'react';
-import {connect} from "react-redux";
 import {withRouter, Link} from 'react-router-dom';
 
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import EnsembleSelect from './ensemble_picker';
-import Searcher from './searcher';
-import CollectionSelect from './collection_picker';
-import PreviewStrip from './preview_strip';
-import {MAIN_WIDTH} from '../constants';
 import {withStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-
-import * as buttons from '../constants'
-import {isAudio, isVideo, isYouTube, isVimeo} from '../constants'
-import {fetchResource, isFetching, getDataArray} from '../store/actions'
 
 const styles = theme => ({
   titleBar: {

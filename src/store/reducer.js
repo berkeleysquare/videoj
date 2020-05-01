@@ -16,12 +16,12 @@ function rootReducer(state = {}, action) {
       const resource_state = state[action.resource];
       const new_resource_state = resource(resource_state, action);
       return Object.assign({}, state, {[action.resource]: new_resource_state});
+    default:
   }
   return state;
 }
 
 function resource(state = {}, action) {
-  var data;
 
   switch (action.type) {
     case FETCH_COLLECTION_REQUEST:
@@ -44,6 +44,7 @@ function resource(state = {}, action) {
         state,
         {data: [], error: true, fetching: false}
       );
+    default:
   }
   return state;
 }

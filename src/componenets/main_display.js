@@ -4,15 +4,11 @@ import {withRouter} from 'react-router-dom';
 
 import TitleBar from './title_bar';
 
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import EnsembleSelect from './ensemble_picker';
 import Searcher from './searcher';
-import CollectionSelect from './collection_picker';
 import PreviewStrip from './preview_strip';
 import {MAIN_WIDTH} from '../constants';
 import {withStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 
 import * as buttons from '../constants'
 import {isAudio, isVideo, isYouTube, isVimeo} from '../constants'
@@ -30,11 +26,6 @@ const styles = theme => ({
     marginLeft: '2px',
     minWidth: '240px',
     height: '120px',
-  },
-  player: {
-    marginLeft: '12px',
-    width: '480px',
-    height: '360px',
   },
   audio: {
     position: 'absolute',
@@ -73,23 +64,6 @@ const styles = theme => ({
     height: '480px',
     right: '20px',
     top: '115px',
-  },
-  collectionTitle: {
-    position: 'absolute',
-    width: '555px',
-    height: '26px',
-    left: '23px',
-    top: '115px',
-
-    fontFamily: 'Raleway',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '34px',
-    lineHeight: '40px',
-    display: 'flex',
-    alignItems: 'flex-end',
-
-    color: '#FFFFFF',
   },
   collectionTitle: {
     position: 'absolute',
@@ -166,6 +140,14 @@ export const DisplayItems = props => {
 };
 
 
+const getEnsembleTitle = (id, collection) => {
+  const filtered = (collection || []).filter(e => e.id === id);
+  if (filtered && filtered.length) {
+    return filtered[0].text;
+  }
+  return '';
+};
+
 class mainDisplay extends React.Component {
   constructor(props) {
     super(props);
@@ -187,7 +169,7 @@ class mainDisplay extends React.Component {
   }
 
   getCurrentVideo = (currentId, currentVideos) => {
-    const videos = currentVideos.filter(v => v.id === currentId);
+    const videos = currentVideos.filter(v => v.id == currentId);
     return (videos && videos.length) ? videos[0] : {};
   };
 
@@ -219,10 +201,8 @@ class mainDisplay extends React.Component {
       ensemble,
       collection,
       collectionTitle,
-      collectionDescription,
       collectionMedia,
       classes} = this.props;
-
 
     const filteredEnsemble = (ensemble === 'all')
           ? videos
@@ -242,7 +222,7 @@ class mainDisplay extends React.Component {
     }
     const currentId =  video.id || id;
 
-    const {title, description, media, poster, composer, copyright} = video;
+    const {title, description, media, poster, recorded, composer, copyright} = video;
     const ensembles = collectionEnsembles || [];
     const showAudio = isAudio(media);
     const showVideo = isVideo(media);
@@ -270,15 +250,16 @@ class mainDisplay extends React.Component {
 
     return (
       <div className={classes.blankBack}>
-        <TitleBar collection={collection}
+        <TitleBar collection={collectionTitle}
                   ensembleControl={ensembleControl}
                   searchControl={searchControl}/>
         <DisplayItem text={title}
                      className={classes.collectionTitle} />
         <DisplayItems
           items={[
-            {title: 'Ensemble', text: video.ensemble},
+            {title: 'Ensemble', text: getEnsembleTitle(video.ensemble, ensembles)},
             {title: 'Description', text: description},
+            {title: 'Released', text: recorded},
             {title: 'Composer', text: composer + (copyright ? (' ©' + copyright) : '')},
           ]}
           className={classes.collectionDescrip}
@@ -295,17 +276,19 @@ class mainDisplay extends React.Component {
                   Your browser does not support the video tag.
               </video>}
         {showAudio && <div>
-          <img className={classes.player} src={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')} />
+          <img className={classes.player}
+               alt={(poster != null) ? poster.toString() : '__unknown___'}
+               src={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')} />
           <audio className={classes.audio}
                              controls
                              src={collectionMedia + media} type="audio/mpeg">
           Your browser does not support the audio tag.
           </audio></div>}
           {showYouTube && <div>
-            <iframe className={classes.player} src={youTubeUrl(media)}></iframe>
+            <iframe title={'YouTubePlayer'} className={classes.player} src={youTubeUrl(media)}></iframe>
           </div>}
           {showVimeo && <div>
-            <iframe className={classes.player} src={vimeoUrl(media)} allow="fullscreen" allowfullscreen></iframe>
+            <iframe title={'Vimeo Player'} className={classes.player} src={vimeoUrl(media)} allow="fullscreen" allowfullscreen></iframe>
           </div>}
 
         <div  className={classes.songList}>
