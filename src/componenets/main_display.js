@@ -35,7 +35,7 @@ const styles = theme => ({
     top: '481px',
     opacity: '0.5'
   },
-  blankBack: {
+  back: {
     position: 'absolute',
     left: 0,
     right: 0,
@@ -43,7 +43,67 @@ const styles = theme => ({
     bottom: 0,
     backgroundSize: 'cover',
     backgroundPosition: 'center 40%',
-    backgroundImage: `url(/assets/blank_back.jpg)`,
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .2)), url(/assets/blank_back.jpg)',
+  },
+  backHalfgone: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 40%',
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .9)), url(/assets/poster_halfgone.jpg)',
+  },
+  backJkeven: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 40%',
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9)), url(/assets/poster_jkeven.jpg)',
+  },
+  backErrand: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 40%',
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .9)), url(/assets/poster_eb.jpg)',
+  },
+  backBksq1: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 40%',
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .8)), url(/assets/poster_bksq.jpg)',
+  },
+  backBksq2: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 40%',
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .8)), url(/assets/poster_bksq2.jpg)',
+  },
+  backCoffeehouse: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 40%',
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .9)), url(/assets/coffeehouse.jpg)',
   },
   songList: {
     position: 'absolute',
@@ -231,6 +291,32 @@ class mainDisplay extends React.Component {
     const youTubeUrl = media => 'https://www.youtube.com/embed/' + media.split(':')[1]
     const vimeoUrl = media => 'https://player.vimeo.com/video/' + media.split(':')[1]
 
+    let background;
+    switch (collection) {
+      case 'halfwaygone':
+        background = 'backHalfgone';
+        break;
+      case 'jk_even':
+        background = 'backJkeven';
+        break;
+      case 'bksq1':
+        background = 'backBksq1';
+        break;
+      case 'bksq2':
+        background = 'backBksq2';
+        break;
+      case 'errand':
+        background = 'backErrand';
+        break;
+      case 'coffeehouse':
+        background = 'backCoffeehouse';
+        break;
+      default:
+        background = 'back';
+        break;
+    }
+
+
     const ensembleControl = (!fetching && collection) ?
       (
       <EnsembleSelect ensembles={ensembles}
@@ -249,7 +335,7 @@ class mainDisplay extends React.Component {
   : (<div></div>);
 
     return (
-      <div className={classes.blankBack}>
+      <div className={classes[background]}>
         <TitleBar collection={collectionTitle}
                   ensembleControl={ensembleControl}
                   searchControl={searchControl}/>
