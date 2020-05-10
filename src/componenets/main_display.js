@@ -7,26 +7,13 @@ import TitleBar from './title_bar';
 import EnsembleSelect from './ensemble_picker';
 import Searcher from './searcher';
 import PreviewStrip from './preview_strip';
-import {MAIN_WIDTH} from '../constants';
 import {withStyles} from '@material-ui/core/styles';
 
 import * as buttons from '../constants'
-import {isAudio, isVideo, isYouTube, isVimeo} from '../constants'
+import {isAudio, isVideo, isYouTube, isVimeo, DEFAULT_ID} from '../constants'
 import {fetchResource, isFetching, getDataArray} from '../store/actions'
 
 const styles = theme => ({
-  video: {
-    elevation: 2,
-    width: MAIN_WIDTH,
-    height: '600px',
-    position: 'absolute',
-    top: '80px'
-  },
-  prevNext: {
-    marginLeft: '2px',
-    minWidth: '240px',
-    height: '120px',
-  },
   audio: {
     position: 'absolute',
     width: '556px',
@@ -73,7 +60,7 @@ const styles = theme => ({
     bottom: 0,
     backgroundSize: 'cover',
     backgroundPosition: 'center 40%',
-    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .9)), url(/assets/poster_eb.jpg)',
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9)), url(/assets/poster_eb.jpg)',
   },
   backBksq1: {
     position: 'absolute',
@@ -173,8 +160,6 @@ const styles = theme => ({
   },
 });
 
-export const DEFAULT_ID = 1000;
-
 export const DisplayItem = props => {
   if (props.text && props.text.length) {
     return (
@@ -233,12 +218,12 @@ class mainDisplay extends React.Component {
     return (videos && videos.length) ? videos[0] : {};
   };
 
-  getNextVideo = (currentId, currentVideos) => {
+  // if id does not exist, get video right after or before
+  getNearVideo = (currentId, currentVideos) => {
     const nextVideos = currentVideos.filter(v => v.id > currentId).sort((a,b) => a.id - b.id);
-    return (nextVideos && nextVideos.length) ? nextVideos[0] : {};
-  };
-
-  getPrevVideo = (currentId, currentVideos) => {
+    if (nextVideos && nextVideos.length) {
+      return nextVideos[0];
+    }
     const prevVideos = currentVideos.filter(v => v.id < currentId).sort((a,b) => b.id - a.id);
     return (prevVideos && prevVideos.length) ? prevVideos[0] : {};
   };
@@ -275,10 +260,7 @@ class mainDisplay extends React.Component {
     let video = this.getCurrentVideo(id, filtered);
     // if id not defined (probably not in category) find one
     if(!video.id) {
-      video = this.getPrevVideo(id, filtered);
-    }
-    if(!video.id) {
-      video = this.getNextVideo(id, filtered);
+      video = this.getNearVideo(id, filtered);
     }
     const currentId =  video.id || id;
 
@@ -315,7 +297,6 @@ class mainDisplay extends React.Component {
         background = 'back';
         break;
     }
-
 
     const ensembleControl = (!fetching && collection) ?
       (

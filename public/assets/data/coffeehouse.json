@@ -5,7 +5,7 @@
   "assets": "http://www.liveatthecoffeehouse.com/assets/",
   "media": "http://www.liveatthecoffeehouse.com/media/",
   "image": "coffee.png",
-  "defaultID": 3410,
+  "defaultID": 3420,
   "ensembles": [
     {
       "id": "jk_solo",
@@ -3266,6 +3266,18 @@
       "copyright": 1924,
       "poster": "ItHadToBeYou.jpg",
       "recorded": "2020-04-19",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": 3460,
+      "title": "Autumn Leaves (mandola)",
+      "description": "Take the new mandola for a spin.",
+      "ensemble": "jk_solo",
+      "media": "AutumnLeaves2020.mp4",
+      "composer": "Joseph Kosma (English lyrics Johnny Mercer)",
+      "copyright": 1945,
+      "poster": "AutumnLeaves2020.jpg",
+      "recorded": "2020-05-08",
       "collection": "coffeehouse"
     }
   ]

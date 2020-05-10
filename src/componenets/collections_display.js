@@ -5,12 +5,10 @@ import CollectionPicker, {getCollectionDescription} from './collection_picker';
 import {DisplayItem, DisplayItems} from './main_display';
 import TitleBar from './title_bar';
 
+import {DEFAULT_COLLECTION} from '../constants'
 import {withStyles} from '@material-ui/core/styles';
 
 const styles = theme => ({
-  root: {
-    backgroundColor: '#110f34',
-  },
   blankBack: {
     position: 'absolute',
     left: 0,
@@ -40,7 +38,6 @@ const styles = theme => ({
     height: '26px',
     left: '23px',
     top: '115px',
-
     fontFamily: 'Raleway',
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -48,7 +45,6 @@ const styles = theme => ({
     lineHeight: '36px',
     display: 'flex',
     alignItems: 'flex-end',
-
     color: '#FFFFFF',
   },
   collectionDescrip: {
@@ -57,7 +53,6 @@ const styles = theme => ({
     height: '329px',
     left: '612px',
     top: '173px',
-
     display: 'flex',
     flexDirection: 'column',
     color: '#FFFFFF',
@@ -83,29 +78,17 @@ const styles = theme => ({
 });
 
 
-export const DEFAULT_ID = 1000;
-
 class collectionsDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchText: ''
+      collection: DEFAULT_COLLECTION,
     };
-  };
-
-  handleSearchTextChange = event => {
-    this.setState({searchText: event.target.value});
-  };
-
-  clearSearchText = () => {
-    this.setState({searchText: ''});
   };
 
   handleButtonEnter = collectionName => {
     this.setState({collection: collectionName});
   };
-
-
 
   render() {
     const {classes} = this.props;
