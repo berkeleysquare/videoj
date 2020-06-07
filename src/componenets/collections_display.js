@@ -23,7 +23,7 @@ const styles = theme => ({
     position: 'absolute',
     left: 20,
     right: 20,
-    bottom: 40,
+    top: '620px',
   },
   player: {
     position: 'absolute',
