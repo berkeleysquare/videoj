@@ -96,14 +96,14 @@ const styles = theme => ({
     position: 'absolute',
     left: 20,
     right: 20,
-    bottom: 100,
+    top: '580px',
   },
   player: {
     position: 'absolute',
     width: '556px',
     height: '370px',
     left: '22px',
-    top: '161px',
+    top: '131px',
   },
   ensemblePick: {
     position: 'absolute',
@@ -117,7 +117,7 @@ const styles = theme => ({
     width: '555px',
     height: '26px',
     left: '23px',
-    top: '115px',
+    top: '95px',
 
     fontFamily: 'Raleway',
     fontStyle: 'normal',
@@ -134,9 +134,9 @@ const styles = theme => ({
     width: '475px',
     height: '329px',
     left: '612px',
-    top: '173px',
+    top: '131px',
 
-    display: 'flex',
+    display:  'flex',
     flexDirection: 'column',
     color: '#FFFFFF',
   },
@@ -298,6 +298,9 @@ class mainDisplay extends React.Component {
         break;
     }
 
+    let composerCopyright = composer || '';
+    composerCopyright += copyright ? (' ©' + copyright) : '';
+
     const ensembleControl = (!fetching && collection) ?
       (
       <EnsembleSelect ensembles={ensembles}
@@ -327,7 +330,7 @@ class mainDisplay extends React.Component {
             {title: 'Ensemble', text: getEnsembleTitle(video.ensemble, ensembles)},
             {title: 'Description', text: description},
             {title: 'Released', text: recorded},
-            {title: 'Composer', text: composer + (copyright ? (' ©' + copyright) : '')},
+            {title: 'Composer', text: composerCopyright},
           ]}
           className={classes.collectionDescrip}
           classTitle={classes.collectionDescripTitle}
