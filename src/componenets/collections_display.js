@@ -1,29 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
-
-import CollectionPicker, {getCollectionDescription} from './collection_picker';
-import {DisplayItem, DisplayItems} from './main_display';
-import TitleBar from './title_bar';
-
-import {DEFAULT_COLLECTION} from '../constants'
 import {withStyles} from '@material-ui/core/styles';
 
-const styles = theme => ({
-  blankBack: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center 40%',
-    backgroundImage: `url(/assets/blank_back.jpg)`,
-  },
-  collections: {
+import CollectionPicker, {getCollectionDescription} from './collection_picker';
+import {DisplayItem, DisplayItems} from './display_page';
+
+import {DEFAULT_COLLECTION} from '../constants'
+
+export const styles = theme => ({
+  previewStrip: {
     position: 'absolute',
     left: 20,
     right: 20,
     top: '620px',
+  },
+  audio: {
+    position: 'absolute',
+    width: '556px',
+    height: '50px',
+    left: '22px',
+    top: '481px',
+    opacity: '0.5'
   },
   player: {
     position: 'absolute',
@@ -77,48 +74,38 @@ const styles = theme => ({
   },
 });
 
+const collectionsDisplay = props => {
+  const {classes} = props;
+  const [collection, setCollection] = useState(DEFAULT_COLLECTION)
 
-class collectionsDisplay extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      collection: DEFAULT_COLLECTION,
-    };
+  const collectionDescription = getCollectionDescription(collection);
+
+  const handleButtonEnter = collectionName => {
+    setCollection(collectionName);
   };
 
-  handleButtonEnter = collectionName => {
-    this.setState({collection: collectionName});
-  };
-
-  render() {
-    const {classes} = this.props;
-    const {collection} = this.state;
-    const collectionDescription = getCollectionDescription(collection);
-
-    return (
-      <div className={classes.blankBack}>
-        <TitleBar />
-          <DisplayItem text={collectionDescription.title}
-                       className={classes.collectionTitle} />
-          <DisplayItems
-            items={[
-              {title: 'Artist', text: collectionDescription.artist},
-              {title: 'Description', text: collectionDescription.description},
-              {title: 'Date', text: collectionDescription.date},
-            ]}
-            className={classes.collectionDescrip}
-            classTitle={classes.collectionDescripTitle}
-            classText={classes.collectionDescripText}
-          />
-        { collectionDescription.url &&
-          <img className={classes.player} alt={collectionDescription.poster} src={collectionDescription.poster} />}
-        <div className={classes.collections}>
-          <CollectionPicker className={classes.collections}
-            onButtonEnter={this.handleButtonEnter && this.handleButtonEnter.bind(this)}/>
-        </div>
+  return (
+    <div>
+        <DisplayItem text={collectionDescription.title}
+                     className={classes.collectionTitle} />
+        <DisplayItems
+          items={[
+            {title: 'Artist', text: collectionDescription.artist},
+            {title: 'Description', text: collectionDescription.description},
+            {title: 'Date', text: collectionDescription.date},
+          ]}
+          className={classes.collectionDescrip}
+          classTitle={classes.collectionDescripTitle}
+          classText={classes.collectionDescripText}
+        />
+      { collectionDescription.url &&
+        <img className={classes.player} alt={collectionDescription.poster} src={collectionDescription.poster} />}
+      <div className={classes.previewStrip}>
+        <CollectionPicker className={classes.previewStrip}
+          onButtonEnter={handleButtonEnter}/>
       </div>
-    );
-  };
+    </div>
+  );
 };
 
 export default withRouter(withStyles(styles)(collectionsDisplay));
