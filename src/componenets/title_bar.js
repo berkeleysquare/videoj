@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import {withStyles} from '@material-ui/core/styles';
@@ -34,46 +34,29 @@ const styles = theme => ({
   },
 });
 
-class titleBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: ''
-    };
-  };
+const titleBar = props => {
 
-  handleSearchTextChange = event => {
-    this.setState({searchText: event.target.value});
-  };
+  const {classes, ensembleControl, searchControl} = props;
 
-  clearSearchText = () => {
-    this.setState({searchText: ''});
-  };
-
-  render() {
-    const {classes, collection, ensembleControl, searchControl} = this.props;
-
-    return (
-      <div className={classes.titleBar}>
-        <span
-          className={classes.titleContent}
-          style={{
-            backgroundImage: `url(/assets/logo.jpg)`,
-            width: 110,
-            height: 34,
-          }}
-        />
-        <div className={classes.menuButtons}>
-          <Link to={'/'}><Button className={classes.menuButton}>Home</Button></Link>
-          <Link to={'/albums/'}><Button className={classes.menuButton}>Collections</Button></Link>
-          {collection && <Button className={classes.menuButton}>{collection}</Button>}
-          {ensembleControl}
-          {searchControl}
-        </div>
-
+  return (
+    <div className={classes.titleBar}>
+      <span
+        className={classes.titleContent}
+        style={{
+          backgroundImage: `url(/assets/logo.jpg)`,
+          width: 110,
+          height: 34,
+        }}
+      />
+      <div className={classes.menuButtons}>
+        <Link to={'/'}><Button className={classes.menuButton}>Home</Button></Link>
+        <Link to={{pathname: '/', state: {showCollection: true}}}><Button className={classes.menuButton}>Collections</Button></Link>
+        {ensembleControl}
+        {searchControl}
       </div>
-    );
-  };
+
+    </div>
+  );
 };
 
-export default withRouter(withStyles(styles)(titleBar));
+export default withStyles(styles)(titleBar);

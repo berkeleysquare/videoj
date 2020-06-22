@@ -19,34 +19,25 @@ const styles = theme => ({
 });
 
 
-class searcher extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      menu: null
-    };
-  };
+const searcher = props =>{
+  const {searchText, onChange, onClear, classes} = props;
 
-  render() {
-    const {searchText, onChange, onClear, classes} = this.props;
-
-    return (
-      <div className={classes.searchBar}>
-        <SearchIcon/>
-        <TextField id="search-collection"
-                   name="searchtext"
-                   value={searchText}
-                   InputProps={{
-                     className: classes.searchText,
-                   }}
-                   onChange={onChange}
-        />
-        <Button aria-controls="Search" onClick={onClear}>
-          <CancelIcon className={classes.searchText}/>
-        </Button>
-      </div>
-    );
-  };
+  return (
+    <div className={classes.searchBar}>
+      <SearchIcon/>
+      <TextField id="search-collection"
+                 name="searchtext"
+                 value={searchText}
+                 InputProps={{
+                   className: classes.searchText,
+                 }}
+                 onChange={onChange}
+      />
+      <Button aria-controls="Search" onClick={onClear}>
+        <CancelIcon className={classes.searchText}/>
+      </Button>
+    </div>
+  );
 };
 
 export default withStyles(styles)(searcher);

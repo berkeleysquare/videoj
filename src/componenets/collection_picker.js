@@ -12,24 +12,25 @@ export const getCollectionDescription = collection => {
   return {};
 }
 
-class collectionPicker extends React.Component {
+const collectionPicker = props => {
+  const {onButtonEnter} = props;
 
-  render() {
-    const {onButtonEnter} = this.props;
-
-    return (
-      <div>
-        {images.map(image => {
-          return (
-            <Link to={'/collection/' + image.collection + '/' + DEFAULT_ENSEMBLE} key={'collect_' + image.collection}>
-              <ImageButton image={image}
-                           onButtonEnter={onButtonEnter.bind(null, image.collection)}  />
-            </Link>
-        )})}
-      </div>
-    );
-  };
-}
+  return (
+    <div>
+      {images.map(image => {
+        return (
+          <Link key={'collect_' + image.collection}
+                to={{
+                  search: '?collection=' + image.collection + '&ensemble=' + DEFAULT_ENSEMBLE,
+                  state: {showCollection: false},
+          }}>
+            <ImageButton image={image}
+                         onButtonEnter={onButtonEnter.bind(null, image.collection)}  />
+          </Link>
+      )})}
+    </div>
+  );
+};
 
 function mapStateToProps(state, ownProps) {
   const ensemble = ownProps.ensemble || DEFAULT_ENSEMBLE;
