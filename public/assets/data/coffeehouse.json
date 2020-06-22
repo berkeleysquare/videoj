@@ -5,7 +5,7 @@
   "assets": "http://www.liveatthecoffeehouse.com/assets/",
   "media": "http://www.liveatthecoffeehouse.com/media/",
   "image": "coffee.png",
-  "defaultID": 3420,
+  "defaultID": 3450,
   "ensembles": [
     {
       "id": "jk_solo",
@@ -3259,7 +3259,7 @@
     {
       "id": 3450,
       "title": "It Had to be You",
-      "description": "",
+      "description": "Safety first!",
       "ensemble": "jk_solo",
       "media": "ItHadToBeYou.mp4",
       "composer": "Isham Jones and Gus Kahn",
@@ -3278,6 +3278,54 @@
       "copyright": 1945,
       "poster": "AutumnLeaves2020.jpg",
       "recorded": "2020-05-08",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": 3470,
+      "title": "Blame it on my Youth (Mandola)",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "BlameItOnMyYouth2020.mp4",
+      "composer": "Oscar Levant (music) and Edward Heyman",
+      "copyright": "1934",
+      "poster": "BlameItOnMyYouth2020.jpg",
+      "recorded": "2020-06-12",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "3480",
+      "title": "Till There Was You (Mandola)",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "TillThereWasYou2020.mp4",
+      "composer": "Meredith Wilson",
+      "copyright": "1957",
+      "poster": "TillThereWasYou2020.jpg",
+      "recorded": "2020-06-12",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "3490",
+      "title": "Muskrat Love",
+      "description": "Hard core traditionalists insist on using the original title, \"Muskrat Candlelight.\"",
+      "ensemble": "jk_solo",
+      "media": "MuskratLove.mp4",
+      "composer": "Willis Alan Ramsey ",
+      "poster": "MuskratLove.jpg",
+      "recorded": "2020-06-20",
+      "collection": "coffeehouse",
+      "copyright": "1972"
+    },
+    {
+      "id": "3500",
+      "title": "They Didn't Believe Me",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "TheyDidntBelieveMe.mp4",
+      "composer": "Jerome Kern & Herbert Reynolds",
+      "copyright": "1914",
+      "poster": "TheyDidntBelieveMe.jpg",
+      "recorded": "2020-06-21",
       "collection": "coffeehouse"
     }
   ]

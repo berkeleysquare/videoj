@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from "react-redux";
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 import TitleBar from './title_bar';
 import EnsembleSelect from './ensemble_picker';
@@ -100,6 +101,13 @@ const styles = theme => ({
     right: '20px',
     top: '115px',
   },
+  openCollectionsButton: {
+    position: 'absolute',
+    right: 100,
+    top: '620px',
+    color: '#FFFFFF',
+    backgroundColor: 'rgba(90, 33, 211, 0.6)',
+  },
 });
 
 export const DisplayItem = props => {
@@ -193,12 +201,21 @@ const mainDisplay = props => {
     }
   }
 
+  const OpenCollectionsButton = () => {
+    return (
+      <Link key={'collectionbutton'}
+            to={{state: {showCollection: true}}}>
+        <Button className={classes.openCollectionsButton}>View Collections</Button>
+      </Link>);
+  }
+
   const ensembleControl = (!fetching && collection) ?
     (
       <EnsembleSelect ensembles={collectionEnsembles || []}
                       ensemble={ensemble}
                       collection={collection}
-                      collectionTitle={collectionTitle}/>
+                      collectionTitle={collectionTitle}
+                      onChange={clearSearchText} />
     )
     : (<div></div>);
 
@@ -215,6 +232,7 @@ const mainDisplay = props => {
     <div className={classes[background]}>
       <TitleBar ensembleControl={ensembleControl}
                 searchControl={searchControl}/>
+      {(!showCollection && !collection) && <OpenCollectionsButton />}
       {showCollection && <CollectionsDisplay />}
       {collection && <MainDisplay collection={collection}
                                   ensemble={ensemble}

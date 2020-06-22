@@ -41,8 +41,7 @@ const styles = theme => ({
   },
 });
 
-// if there are enough to show: |L|**|R|R|R|
-// else try to show all five
+
 const showThisMany = 5;
 const idealIndex = 1;
 
@@ -79,7 +78,7 @@ const previewStrip = props => {
   let numLeft =  currentVideoIndex;
 
   let leftIndex = currentVideoIndex;
-  if (numLeft + numRight  < showThisMany) {
+  if (videoCount  <= showThisMany) {
     // if there are not enough to scroll, show all
     leftIndex = 0;
   } else {

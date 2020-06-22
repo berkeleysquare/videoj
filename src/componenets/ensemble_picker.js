@@ -20,12 +20,13 @@ const styles = theme => ({
   },});
 
 const ensemblePicker = props => {
-  const {history, collection, collectionTitle, collectionEnsembles, ensemble, classes} = props;
+  const {onChange, history, collection, collectionTitle, collectionEnsembles, ensemble, classes} = props;
   const [menu, setMenu] = useState(null);
 
   const handleChange = id => {
     setMenu(null);
     history.push({search: '?collection=' + collection + '&ensemble=' + id});
+    onChange && onChange(id);
   };
 
   const DEFAULT_ENSEMBLE_ITEM = (

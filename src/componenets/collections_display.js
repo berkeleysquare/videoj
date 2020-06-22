@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import {withStyles} from '@material-ui/core/styles';
 
 import CollectionPicker, {getCollectionDescription} from './collection_picker';
 import {DisplayItem, DisplayItems} from './display_page';
 
-import {DEFAULT_COLLECTION} from '../constants'
+import {DEFAULT_COLLECTION, DEFAULT_ENSEMBLE} from '../constants'
 
 export const styles = theme => ({
   previewStrip: {
@@ -99,7 +99,15 @@ const collectionsDisplay = props => {
           classText={classes.collectionDescripText}
         />
       { collectionDescription.url &&
-        <img className={classes.player} alt={collectionDescription.poster} src={collectionDescription.poster} />}
+      <Link key={'collect_' + collection}
+            to={{
+              search: '?collection=' + collection + '&ensemble=' + DEFAULT_ENSEMBLE,
+              state: {showCollection: false},
+            }}>
+        <img className={classes.player}
+             alt={collectionDescription.poster}
+             src={collectionDescription.poster} />
+      </Link>}
       <div className={classes.previewStrip}>
         <CollectionPicker className={classes.previewStrip}
           onButtonEnter={handleButtonEnter}/>
