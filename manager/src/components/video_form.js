@@ -1,12 +1,13 @@
 import React from 'react';
-import {Form} from 'react-final-form';
+import {Form, Field} from 'react-final-form';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 import {mdiGoogle, mdiWikipedia} from '@mdi/js';
 import Icon from '@mdi/react'
 
-import {Picker, TextField, CopyrightField, DateField, NumberField} from './form_fields'
+import {Picker, TextField, CopyrightField, DateField, NumberField, FileField} from './form_fields'
+import {VimeoPrefix, YouTubePrefix} from '../common/constants';
 
 const LinkIcon = path => {
   return (
@@ -25,7 +26,6 @@ export const wrapIds = vid => {
   if (!isValidDate(recordedDate)) {
     recordedDate = new Date();
   }
-
   return {
     ...vid,
     id: parseInt(vid.id),
@@ -33,16 +33,35 @@ export const wrapIds = vid => {
   };
 };
 
-
 const videoForm = props  => {
   const { initialValues, ensembles, closeDialog, onSubmit } = props;
 
+  // Mutator to set poster name from file chooser
+  const setPosterName = ([args, event], state, tools)  => {
+    // args is [name, value]
+    tools.changeValue(state, "poster", () => (args[1] || {}).name);
+  };
+
+  // Mutator to set poster name from file chooser
+  const setMediaName = ([args, event], state, tools)  => {
+    // args is [name, value]
+    tools.changeValue(state, "media", () => (args[1] || {}).name);
+  };
+
+  // Mutator to set prefix in media field
+  const setMediaPrefix = ([args, event], state, tools)  => {
+    // args is [name, value]
+    tools.changeValue(state, "media", () => args[1] || '');
+  };
+  
   return (
     <Form
       onSubmit={onSubmit}
       initialValues={initialValues}
-      render={({ handleSubmit, values }) => {
+      mutators={{setPosterName, setMediaPrefix, setMediaName}}
+      render={({ handleSubmit, values, form }) => {
         const title = (values && values.title) ? values.title : '';
+        values.posterChooser = ((values.poster || [])[0] || {}).name;
 
         return(<div>
           <form onSubmit={handleSubmit} noValidate>
@@ -74,10 +93,19 @@ const videoForm = props  => {
                             label={'Copyright'}/>
             <br />
             <TextField name={'poster'}
-                       label={'Image File'}/>
+                       label={'Image File'}/>            
+            <FileField name={'posterChooser'}
+                       label={'Image File'}
+                       onChange={e => form.mutators.setPosterName(['', e.target.files[0]])}
+                       />
             <br />
             <TextField name={'media'}
-                       label={'Media File'}/>
+                       label={'Media File'}/><br/>
+            <FileField name={'mediaChooser'}
+                       label={'Media File'}
+                       onChange={e => form.mutators.setMediaName(['', e.target.files[0]])}    />      
+             | <a href={'#'} onClick={() => form.mutators.setMediaPrefix(['', YouTubePrefix])}>{YouTubePrefix}</a>           
+             | <a href={'#'} onClick={() => form.mutators.setMediaPrefix(['', VimeoPrefix])}>{VimeoPrefix}</a>
             <br />
             <DateField name={'recorded'}
                        label={'Recorded Date'}/>

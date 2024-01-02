@@ -127,3 +127,16 @@ const dateField = props => {
   );
 }
 export const DateField = withStyles(styles)(dateField);
+
+export const FileField = ({ name, ...props }) => (
+  <Field name={name}>
+    {({ input: { value, onChange, ...input } }) => {
+      return (<input
+        {...input}
+        type="file"
+        onChange={({ target }) => onChange(target.files)} // instead of the default target.value
+        {...props}
+      />
+    )}}
+  </Field>
+)
