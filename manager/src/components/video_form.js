@@ -16,11 +16,20 @@ const LinkIcon = path => {
   )
 }
 
+function isValidDate(d) {
+  return d instanceof Date && !isNaN(d);
+}
+
 export const wrapIds = vid => {
+  let recordedDate = new Date(vid.recorded || '');
+  if (!isValidDate(recordedDate)) {
+    recordedDate = new Date();
+  }
+
   return {
     ...vid,
     id: parseInt(vid.id),
-    recorded: new Date(vid.recorded || '').toISOString().substring(0,10),
+    recorded: recordedDate.toISOString().substring(0,10)
   };
 };
 
