@@ -104,8 +104,10 @@ const albumDisplay = props => {
             </Grid>
             <Grid item xs={12}>
               <TextField value={title}
-                         label={'Search Title'}
+                         label={'Search Song Titles'}
                          onChange={handleSearchChange} />
+              <br/>
+              <p>{searchedVideos.length} songs found</p>                      
             </Grid>
             <Grid item xs={12}>
               <DownloadButton obj={jsonDoc} type={'json'}/><br/>

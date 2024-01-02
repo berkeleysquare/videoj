@@ -1,88 +1,5 @@
 {
-  "title": "The Coffeehouse",
-  "collection": "coffeehouse",
-  "description": "Live from the Coffeehouse at JKBoxed.com!",
-  "assets": "http://jkboxed.com/liveatthecoffeehouse/assets/",
-  "media": "http://jkboxed.com/liveatthecoffeehouse/media/",
-  "image": "coffee.png",
-  "defaultID": 3940,
-  "ensembles": [
-    {
-      "id": "jk_solo",
-      "text": "jk solo",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "sugarchuck",
-      "text": "Sugarchuck",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "dick_howard_and_diane",
-      "text": "Dick, Howard and Diane",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "kurt_o",
-      "text": "Kurt O",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "special_guests",
-      "text": "Special Guests",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "the_hoagies",
-      "text": "The Hoagies",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "test_of_time",
-      "text": "Test of Time",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "flat_out_jazz",
-      "text": "Flat Out Jazz",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "cousin_syd",
-      "text": "Cousin Syd",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "mike",
-      "text": "Mike",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "city_wine_sessions",
-      "text": "The City Wine Sessions",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "from_the_blue_bird",
-      "text": "From the Blue Bird",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "mollie_dangerbucket",
-      "text": "Mollie Dangerbucket",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "fused_improv",
-      "text": "Fused Improv",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": "sparrowhawk",
-      "text": "sparrowhawk",
-      "collection": "coffeehouse"
-    }
-  ],
+  "fetching": false,
   "data": [
     {
       "_id": 1000,
@@ -3698,7 +3615,8 @@
       "poster": "IJustWasntMadeForTheseTimes.jpg",
       "recorded": "2022-03-20",
       "collection": "coffeehouse"
-    },  {
+    },
+    {
       "id": 3840,
       "title": "Cry Me a River",
       "description": "",
@@ -3799,6 +3717,19 @@
       "poster": "Witchcraft2022.jpg",
       "recorded": "2022-09-05",
       "collection": "coffeehouse"
+    },
+    {
+      "id": 3925,
+      "title": "Bewitched, Bothered, and Bewildered",
+      "description": "The Halloween medly rocks on...",
+      "ensemble": "jk_solo",
+      "media": "YouTube:4CLJxQXABXs",
+      "composer": "Rodgers & Hart",
+      "copyright": "1940",
+      "poster": "BewitchedBotheredBewildered2022.jpg",
+      "recorded": "2022-09-26",
+      "collection": "coffeehouse",
+      "album": "The Coffeehouse"
     },
     {
       "id": 3930,
@@ -3922,7 +3853,7 @@
     },
     {
       "id": 4040,
-      "title": "All the Things you ARe",
+      "title": "All the Things you Are",
       "description": "",
       "ensemble": "jk_solo",
       "media": "YouTube:9diy7qZljw",
@@ -3930,18 +3861,6 @@
       "copyright": 1937,
       "poster": "AllTheThingsYouAre2023.jpg",
       "recorded": "2022-02-23",
-      "collection": "coffeehouse"
-    },
-    {
-      "id": 4060,
-      "title": "Don't Fence Me In",
-      "description": "",
-      "ensemble": "jk_solo",
-      "media": "YouTube:9O1zjk9oTEs",
-      "composer": "Ray Evans and Jay Livingston",
-      "copyright": 1949,
-      "poster": "MonaLisa.jpg",
-      "recorded": "2022-12-24",
       "collection": "coffeehouse"
     },
     {
@@ -3957,6 +3876,18 @@
       "collection": "coffeehouse"
     },
     {
+      "id": 4060,
+      "title": "Don't Fence Me In",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "YouTube:9O1zjk9oTEs",
+      "composer": "Ray Evans and Jay Livingston",
+      "copyright": 1949,
+      "poster": "DontFenceMeIn2023.jpg",
+      "recorded": "2022-12-24",
+      "collection": "coffeehouse"
+    },
+    {
       "id": 4070,
       "title": "It Might as well be Spring",
       "description": "",
@@ -3964,96 +3895,237 @@
       "media": "YouTube:gsrUKoItavw",
       "composer": "Rodgers & Hammerstein",
       "copyright": 1945,
-      "poster": "MonaLisa.jpg",
+      "poster": "ItMightAsWellBeSpring2023.jpg",
       "recorded": "2022-12-24",
       "collection": "coffeehouse"
     },
     {
-      "id": 4020,
-      "title": "Mona Lisa",
+      "id": 4080,
+      "title": "Coquette",
       "description": "",
       "ensemble": "jk_solo",
-      "media": "YouTube:9O1zjk9oTEs",
-      "composer": "Ray Evans and Jay Livingston",
-      "copyright": 1949,
-      "poster": "MonaLisa.jpg",
-      "recorded": "2022-12-24",
+      "media": "YouTube:jVucCuzjaM8",
+      "composer": "Johnny Green and Carmen Lombardo, lyrics by Gus Kahn",
+      "poster": "Coquette.jpg",
+      "recorded": "2023-04-23",
+      "collection": "",
+      "album": "The Coffeehouse",
+      "copyright": "1928"
+    },
+    {
+      "id": 4090,
+      "title": "Shadow of Your Smile",
+      "description": "For Howard & Pam",
+      "ensemble": "jk_solo",
+      "media": "YouTube:CeaZC8Fh6jQ",
+      "composer": "Johnny Mandel, Paul Francis Webster",
+      "copyright": "1965",
+      "poster": "ShadowOfYourSmile.jpg",
+      "recorded": "2023-05-08",
+      "collection": "",
+      "album": "The Coffeehouse"
+    },
+    {
+      "id": 4100,
+      "title": "All of Me",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "YouTube:IoM52mzZ66Y",
+      "composer": "Seymour Simon",
+      "copyright": "1931",
+      "poster": "AllOfMe2023.jpg",
+      "recorded": "2023-07-09",
+      "collection": "",
+      "album": "The Coffeehouse"
+    },
+    {
+      "id": 4110,
+      "title": "That's All",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "YouTube:DO3Q8uzVi2I",
+      "composer": "Alan Brandt, Bob Haymes",
+      "copyright": "1952",
+      "poster": "ThatsAll2023.jpg",
+      "recorded": "2023-07-09",
+      "collection": "",
+      "album": "The Coffeehouse"
+    },
+    {
+      "id": 4150,
+      "title": "The Gang that Sang Heart of my Heart",
+      "description": "All four siblings singing one of Dad's favorites.",
+      "ensemble": "dick_howard_and_diane",
+      "media": "YouTube:N8PlPXztCVw",
+      "composer": "Ben Ryan",
+      "poster": "TheGangThatSangHeartOfMyHeart.jpg",
+      "recorded": "2023-06-20",
+      "collection": "",
+      "album": "The Coffeehouse",
+      "copyright": "1926"
+    },
+    {
+      "id": 4170,
+      "title": "Everybody's Moon",
+      "description": "Howard's Beautiful tune.",
+      "ensemble": "dick_howard_and_diane",
+      "media": "YouTube:v1VsMJo-3oI",
+      "composer": "Howard Ashby Kranz",
+      "copyright": "1978",
+      "poster": "EverybodysMoon2023.jpg",
+      "recorded": "2023-07-09",
+      "collection": "",
+      "album": "The Coffeehouse"
+    },
+    {
+      "id": 4175,
+      "title": "Always",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "YouTube:8DOgGjhlqx0",
+      "composer": "Irving Berlin",
+      "copyright": "1925",
+      "poster": "Always2023.jpg",
+      "recorded": "2023-06-20",
+      "collection": "",
+      "album": "The Coffeehouse"
+    },
+    {
+      "id": 4180,
+      "title": "Dahil sa Iyo",
+      "description": "For Keith & Cecile",
+      "ensemble": "jk_solo",
+      "media": "YouTube:u3D09TCSd-s",
+      "composer": "Mike Velarde, Jr.",
+      "copyright": "1938",
+      "poster": "DahilSaIyo2023.jpg",
+      "recorded": "2023-06-25",
+      "collection": "",
+      "album": "The Coffeehouse"
+    },
+    {
+      "id": 4190,
+      "title": "Bésame Mucho",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "YouTube:CQLBd_y08B8",
+      "composer": "Consuelo Velázquez",
+      "copyright": "1940",
+      "poster": "BesameMucho2023.jpg",
+      "recorded": "2023-06-26",
+      "collection": "",
+      "album": "The Coffeehouse"
+    },
+    {
+      "id": 4200,
+      "title": "Douce Ambiance",
+      "description": "Gypsy Jazzers love this as an uptempo jam. Here's my slow solo arrangement.",
+      "ensemble": "jk_solo",
+      "media": "YouTube:Hk5tlUMUK8Q",
+      "composer": "Django Reinhardt, Stéphane Grappelli ",
+      "copyright": "1943",
+      "poster": "DouceAmbiance.jpg",
+      "recorded": "2023-08-07",
+      "collection": "coffeehouse",
+      "album": "The Coffeehouse"
+    },
+    {
+      "id": 4210,
+      "title": "What Now My Love",
+      "description": "",
+      "ensemble": "jk_solo",
+      "media": "YouTube:FZAyWMAFVZ0",
+      "composer": "Gilbert Bécaud",
+      "copyright": "1961",
+      "poster": "WhatNowMyLove2023.jpg",
+      "recorded": "2023-08-07",
+      "collection": "coffeehouse",
+      "album": "The Coffeehouse"
+    }
+  ],
+  "error": false,
+  "title": "The Coffeehouse",
+  "collection": "coffeehouse",
+  "description": "Live from the Coffeehouse at JKBoxed.com!",
+  "assets": "http://jkboxed.com/liveatthecoffeehouse/assets/",
+  "media": "http://jkboxed.com/liveatthecoffeehouse/media/",
+  "image": "coffee.png",
+  "defaultID": 4175,
+  "ensembles": [
+    {
+      "id": "jk_solo",
+      "text": "jk solo",
       "collection": "coffeehouse"
     },
     {
-      "id": 4020,
-      "title": "Mona Lisa",
-      "description": "",
-      "ensemble": "jk_solo",
-      "media": "YouTube:9O1zjk9oTEs",
-      "composer": "Ray Evans and Jay Livingston",
-      "copyright": 1949,
-      "poster": "MonaLisa.jpg",
-      "recorded": "2022-12-24",
+      "id": "sugarchuck",
+      "text": "Sugarchuck",
       "collection": "coffeehouse"
     },
     {
-      "id": 4020,
-      "title": "Mona Lisa",
-      "description": "",
-      "ensemble": "jk_solo",
-      "media": "YouTube:9O1zjk9oTEs",
-      "composer": "Ray Evans and Jay Livingston",
-      "copyright": 1949,
-      "poster": "MonaLisa.jpg",
-      "recorded": "2022-12-24",
+      "id": "dick_howard_and_diane",
+      "text": "Dick, Howard and Diane",
       "collection": "coffeehouse"
     },
     {
-      "id": 4020,
-      "title": "Mona Lisa",
-      "description": "",
-      "ensemble": "jk_solo",
-      "media": "YouTube:9O1zjk9oTEs",
-      "composer": "Ray Evans and Jay Livingston",
-      "copyright": 1949,
-      "poster": "MonaLisa.jpg",
-      "recorded": "2022-12-24",
+      "id": "kurt_o",
+      "text": "Kurt O",
       "collection": "coffeehouse"
     },
     {
-      "id": 4020,
-      "title": "Mona Lisa",
-      "description": "",
-      "ensemble": "jk_solo",
-      "media": "YouTube:9O1zjk9oTEs",
-      "composer": "Ray Evans and Jay Livingston",
-      "copyright": 1949,
-      "poster": "MonaLisa.jpg",
-      "recorded": "2022-12-24",
+      "id": "special_guests",
+      "text": "Special Guests",
       "collection": "coffeehouse"
     },
     {
-      "id": 4020,
-      "title": "Mona Lisa",
-      "description": "",
-      "ensemble": "jk_solo",
-      "media": "YouTube:9O1zjk9oTEs",
-      "composer": "Ray Evans and Jay Livingston",
-      "copyright": 1949,
-      "poster": "MonaLisa.jpg",
-      "recorded": "2022-12-24",
+      "id": "the_hoagies",
+      "text": "The Hoagies",
       "collection": "coffeehouse"
     },
     {
-      "id": 4020,
-      "title": "Mona Lisa",
-      "description": "",
-      "ensemble": "jk_solo",
-      "media": "YouTube:9O1zjk9oTEs",
-      "composer": "Ray Evans and Jay Livingston",
-      "copyright": 1949,
-      "poster": "MonaLisa.jpg",
-      "recorded": "2022-12-24",
+      "id": "test_of_time",
+      "text": "Test of Time",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "flat_out_jazz",
+      "text": "Flat Out Jazz",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "cousin_syd",
+      "text": "Cousin Syd",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "mike",
+      "text": "Mike",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "city_wine_sessions",
+      "text": "The City Wine Sessions",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "from_the_blue_bird",
+      "text": "From the Blue Bird",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "mollie_dangerbucket",
+      "text": "Mollie Dangerbucket",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "fused_improv",
+      "text": "Fused Improv",
+      "collection": "coffeehouse"
+    },
+    {
+      "id": "sparrowhawk",
+      "text": "sparrowhawk",
       "collection": "coffeehouse"
     }
   ]
 }
-
-
- 1937

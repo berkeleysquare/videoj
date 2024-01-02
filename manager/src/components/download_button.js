@@ -12,9 +12,9 @@ const downloadDataButton = props => {
     blobURL = URL.createObjectURL(blobJSON);
     fileName = (obj.collection || 'album_data') + '.json';
   } else {
-    const blobTxt = new Blob(obj.map((s,i) => '\n' + (i+1) + '  ' + s), {type: 'text/plain;charset=utf-8'});
+    const blobTxt = new Blob([obj], {type: 'text/plain;charset=utf-8'});
     blobURL = URL.createObjectURL(blobTxt);
-    fileName = 'setlist.txt';
+    fileName = 'setlist.html';
   }
 
   return (
