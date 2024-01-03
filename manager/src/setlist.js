@@ -1,20 +1,14 @@
 import React, {useState} from "react";
 import {connect} from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import VideoDialog from './dialogs/video_dialog';
-import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 
-import {initialValues, DEFAULT_ID} from './common/constants';
-import {wrapIds} from './components/video_form';
+import {formatList} from './setlist_formatting';
 import {isFetching} from "./common/actions";
-import {CircularProgress, InputLabel} from "@material-ui/core";
+import {CircularProgress} from "@material-ui/core";
 import DownloadButton from "./components/download_button";
 import Button from "@material-ui/core/Button";
-import { set } from "date-fns";
 
 
 const SongButton = props => {
@@ -26,22 +20,10 @@ const SongButton = props => {
     </Button>
   )
 };
+const inList = (title, list) => {
+  return list.find(s => s.title === title) !== undefined;
+};
 
-const formatList = (listObject, setListTitle) => {
-  const ret = [];
-  ret.push('<h3>' + setListTitle + '</h3>');
-  ret.push('<p>' + (new Date).toLocaleDateString() + '</p>');
-  ret.push('<table cellspacing="10"><tbody');
-  listObject.forEach((s,i) => {
-    ret.push('<tr><td>' + 
-      (i+1) + '</td><td>' + 
-      s.title + '</td><td style="text-align: right">' + 
-      s.composer + '</td><td>©' + 
-      s.copyright +
-      '</td></tr>');
-  });
-  return ret.join('\n') + '</tbody></table>';
-}
 
 const setlist = props => {
   const {album, fetching} = props;
@@ -120,7 +102,7 @@ const setlist = props => {
           <td valign={'top'}>
             <h4>Songs</h4>
             {searchedVideos.map(v => ((<>
-              {setList.includes(v.title) && <span>&#x2713; </span>}
+              {inList(v.title, setList) && <span>&#x2713; </span>}
               <SongButton title={v.title} onClick={addSong.bind(null, v)} />
               <br/>
             </>)))}
