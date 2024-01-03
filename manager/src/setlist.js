@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import {connect} from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import {formatList} from './setlist_formatting';
 import {isFetching} from "./common/actions";
@@ -10,6 +12,13 @@ import {CircularProgress} from "@material-ui/core";
 import DownloadButton from "./components/download_button";
 import Button from "@material-ui/core/Button";
 
+
+const SORT_TYPE_TITLE = 'title';
+const SORT_TYPE_ID = 'id';
+const sortOptions = [
+  {value: SORT_TYPE_TITLE, label: 'Title A -> Z'},
+  {value: SORT_TYPE_ID, label: 'ID New -> Old'}
+];
 
 const SongButton = props => {
   const {title, onClick} = props;
@@ -40,6 +49,11 @@ const setlist = props => {
   const [title, setTitle] = useState('');
   const [setList, setSetList] = useState([]);
   const [setListTitle, setSetListTitle] = useState('');
+  const [sortType, setSortType] = useState(SORT_TYPE_ID);
+
+  const handleSortChange = event => {
+    setSortType(event.target.value);
+  };
 
   const addSong = songTitle => {
     const newList = setList.slice();
@@ -77,7 +91,10 @@ const setlist = props => {
     setSetListTitle(event.target.value);
   }
 
-  const sortedVideos = videos.sort((a, b) => b.id - a.id);
+  const sortById = (a, b) => b.id > a.id ? 1 : -1;
+  const sortByTitle = (a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1;
+  ;
+  const sortedVideos = videos.sort(sortType === SORT_TYPE_ID ? sortById : sortByTitle);
 
   const searchedVideos = (title && title.length) ?
     sortedVideos.filter(v => v.title.toLowerCase().startsWith(title.toLowerCase())) :
@@ -95,6 +112,10 @@ const setlist = props => {
                    label={'Set List Title'}
                    onChange={handleSetListTitleChange} /> 
                    <br/>
+        <Select label={'Sort'} onChange={handleSortChange} value={sortType}>
+          {sortOptions.map((o,i) => <MenuItem key={'sorttype_' + i} value={o.value}>{o.label}</MenuItem>)}
+        </Select> 
+        <br/>
         <p>{(searchedVideos || []).length} songs found</p>           
       </Paper>
       <table>
