@@ -72,6 +72,8 @@ const albumDisplay = props => {
     filteredVideos.filter(v => v.title.toLowerCase().startsWith(title.toLowerCase())) :
     filteredVideos;
 
+  const groupedVideos = groupByYear(searchedVideos);  
+
   // defaults for "New Video"
   const newValues = {
     ...initialValues,
@@ -95,44 +97,62 @@ const albumDisplay = props => {
         <br/>
         <form>
           <Grid container spacing={1}>
-            <Grid item xs={12}>
+            <Grid item xs={2}>
               <InputLabel shrink={true}>Ensemble</InputLabel>
               <Select label={'Ensemble'}
                       onChange={handleEnsembleChange}>
                 {ensembleOptions}
               </Select><br/>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={10}>
               <TextField value={title}
                          label={'Search Song Titles'}
                          onChange={handleSearchChange} />
-              <br/>
+            </Grid>
+            <Grid item xs={2}>
+              <VideoDialog initialValues={newValues}
+                           ensembles={ensembles}
+                           album={album}
+                           onSubmit={saveVideo} />
+            </Grid>            
+            <Grid item xs={2}>
               <p>{searchedVideos.length} songs found</p>                      
             </Grid>
-            <Grid item xs={12}>
-              <DownloadButton obj={jsonDoc} type={'json'}/><br/>
-              <VideoDialog initialValues={newValues}
-                           album={album}
-                           ensembles={ensembles}
-                           onSubmit={saveVideo}
-              />
+            <Grid item xs={8}>
+              <DownloadButton obj={jsonDoc} type={'json'}/>
             </Grid>
-          </Grid>
+        </Grid>
         </form>
       </Paper>
-      {searchedVideos.map (v => {
-      return (
-        <VideoDialog
-          initialValues={v}
-          album={album}
-          isDefault={defaultVideo == v.id}
-          setDefault={setDefaultVideo.bind(null, v.id)}
-          deleteItem={deleteVideo.bind(null, v.id)}
-          ensembles={ensembles}
-          onSubmit={saveVideo} />)
-      })}
+      {groupedVideos.map(g => {
+      return (<>
+        <Typography variant={'h5'}>{g.year}</Typography>
+        {g.dialogs.map(v => {
+        return (
+          <VideoDialog
+            initialValues={v}
+            album={album}
+            isDefault={defaultVideo == v.id}
+            setDefault={setDefaultVideo.bind(null, v.id)}
+            deleteItem={deleteVideo.bind(null, v.id)}
+            ensembles={ensembles}
+            onSubmit={saveVideo} />)
+        })}
+        <Typography variant="h5">----</Typography></>)})}
     </div>
   );
+}
+
+const groupByYear = vids => {
+  const years = vids.map(d => (d.recorded || '    ').substring(0, 4));
+  const uniqueYears = [...new Set(years)];
+  const grouped = uniqueYears.map(y => {
+    return {
+      year: y,
+      dialogs: vids.filter(d => (d.recorded || '    ').startsWith(y)),
+    }
+  });
+  return grouped;
 }
 
 function mapStateToProps(state, ownProps) {

@@ -103,20 +103,35 @@ const setlist = props => {
   return (
     <div className="App">
       <Paper elevation={2}>
-        <Typography variant={'h4'}>{albumTitle}</Typography>
-        <br/>
-        <TextField value={title}
-                   label={'Search Song Titles'}
-                   onChange={handleSearchChange} />     
-        <TextField value={setListTitle}
-                   label={'Set List Title'}
-                   onChange={handleSetListTitleChange} /> 
-                   <br/>
-        <Select label={'Sort'} onChange={handleSortChange} value={sortType}>
-          {sortOptions.map((o,i) => <MenuItem key={'sorttype_' + i} value={o.value}>{o.label}</MenuItem>)}
-        </Select> 
-        <br/>
-        <p>{(searchedVideos || []).length} songs found</p>           
+        <table width={'50%'}>
+        <tr>
+            <td colSpan={3}>
+              <Typography variant={'h4'}>{albumTitle}</Typography>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={3}>
+              <TextField value={setListTitle}
+                         label={'Set List Title'}
+                         onChange={handleSetListTitleChange} />             
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <TextField value={title}
+                         label={'Search Song Titles'}
+                         onChange={handleSearchChange} />     
+            </td>
+            <td>
+              <Select label={'Sort'} onChange={handleSortChange} value={sortType}>
+                {sortOptions.map((o,i) => <MenuItem key={'sorttype_' + i} value={o.value}>{o.label}</MenuItem>)}
+              </Select> 
+            </td>
+            <td>
+              <p>{(searchedVideos || []).length} songs found</p>           
+            </td>
+          </tr>
+        </table>
       </Paper>
       <table>
         <tr>
@@ -129,7 +144,7 @@ const setlist = props => {
             </>)))}
           </td>
           <td valign={'top'}>
-            <h4>Set List</h4>
+            <h4>{setListTitle}</h4>
             {setList.length > 0 && 
               <DownloadButton obj={formatList(setList, setListTitle)} type={'text'}/>}
             <br/>
