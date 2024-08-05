@@ -4,8 +4,9 @@
 .idea
 
 # dependencies
-/node_modules
 /.pnp
+/manager/node_modules
+/node_modules
 .pnp.js
 
 # testing

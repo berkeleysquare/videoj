@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {connect} from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -7,11 +7,11 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import {formatList} from './setlist_formatting';
-import {isFetching} from "./common/actions";
+import {getDataArray, isFetching, fetchResource} from "./common/actions";
 import {CircularProgress} from "@material-ui/core";
 import DownloadButton from "./components/download_button";
 import Button from "@material-ui/core/Button";
-
+import { set } from "date-fns";
 
 const SORT_TYPE_TITLE = 'title';
 const SORT_TYPE_ID = 'id';
@@ -35,14 +35,7 @@ const inList = (title, list) => {
 
 
 const setlist = props => {
-  const {album, fetching} = props;
-
-  if (!album.title) {
-    return (<div/>);
-  }
-  if (fetching) {
-    return (<CircularProgress/>)
-  }
+  const {album, loadedSetList, fetching} = props;
 
   const albumTitle = album.title || '';
 
@@ -50,6 +43,25 @@ const setlist = props => {
   const [setList, setSetList] = useState([]);
   const [setListTitle, setSetListTitle] = useState('');
   const [sortType, setSortType] = useState(SORT_TYPE_ID);
+  const [loadFrom, setLoadFrom] = useState('');
+
+  console.log('loadedSetListTitle', loadedSetList.setListTitle);
+  useEffect(() => {
+    console.log('setList', loadedSetList.setList);
+    console.log('setListTitle', loadedSetList.setListTitle);       
+    setSetList(loadedSetList.setList || []);
+    setSetListTitle(loadedSetList.setListTitle || '');
+  }, [JSON.stringify(loadedSetList)]);
+
+  const onLoadFrom = e => {
+    const {fetchSetList} = props;
+    const file = e.target.files[0];
+    const {name} = file;
+    const resource = name.replace('.json', '');
+    console.log('fetch', resource);
+    setLoadFrom(resource);
+    fetchSetList(resource);
+  }
 
   const handleSortChange = event => {
     setSortType(event.target.value);
@@ -79,6 +91,13 @@ const setlist = props => {
       const newList = setList.slice();
       [newList[index+1], newList[index]] = [newList[index], newList[index+1]];
       setSetList(newList);    }
+  }
+
+  if (!album.title) {
+    return (<div/>);
+  }
+  if (fetching) {
+    return (<CircularProgress/>)
   }
 
   const videos = album.data || [];
@@ -112,8 +131,14 @@ const setlist = props => {
           <tr>
             <td colSpan={3}>
               <TextField value={setListTitle}
-                         label={'Set List Title'}
+                         label={'Setlist Title'}
                          onChange={handleSetListTitleChange} />             
+            </td>
+            <td>
+              <TextField name={'loadJson'}
+                        label={'Load JSON'}
+                        type='file'
+                        onChange={onLoadFrom}/>
             </td>
           </tr>
           <tr>
@@ -146,7 +171,7 @@ const setlist = props => {
           <td valign={'top'}>
             <h4>{setListTitle}</h4>
             {setList.length > 0 && 
-              <DownloadButton obj={formatList(setList, setListTitle)} type={'text'}/>}
+              <DownloadButton obj={formatList(setList, setListTitle)} title={setListTitle} type={'text'}/>}
             <br/>
             {setList.map((v,i) => ((<>
               <Button>{i + 1}</Button>
@@ -156,6 +181,7 @@ const setlist = props => {
               <Button onClick={removeSong.bind(null, i)}>X</Button>
               <br/>
             </>)))}
+            <DownloadButton obj={{setList, setListTitle}} title={setListTitle} type={'setlist'}/>
           </td>
         </tr>
       </table>
@@ -166,11 +192,19 @@ const setlist = props => {
 function mapStateToProps(state, ownProps) {
   const albumName = ownProps.album || '';
   const album = state[albumName] || {};
+  const loadedSetList = state.setlist || {};
 
   return {
     album,
-    fetching: isFetching([album])
+    loadedSetList: getDataArray(loadedSetList),
+    fetching: isFetching([album, loadedSetList])
   };
 };
 
-export default connect(mapStateToProps)(setlist);
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchSetList: file => dispatch(fetchResource(file, '', {storeName: 'setlist'})),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(setlist);
