@@ -11,7 +11,6 @@ import {getDataArray, isFetching, fetchResource} from "./common/actions";
 import {CircularProgress} from "@material-ui/core";
 import DownloadButton from "./components/download_button";
 import Button from "@material-ui/core/Button";
-import { set } from "date-fns";
 
 const SORT_TYPE_TITLE = 'title';
 const SORT_TYPE_ID = 'id';
@@ -45,10 +44,7 @@ const setlist = props => {
   const [sortType, setSortType] = useState(SORT_TYPE_ID);
   const [loadFrom, setLoadFrom] = useState('');
 
-  console.log('loadedSetListTitle', loadedSetList.setListTitle);
-  useEffect(() => {
-    console.log('setList', loadedSetList.setList);
-    console.log('setListTitle', loadedSetList.setListTitle);       
+  useEffect(() => {  
     setSetList(loadedSetList.setList || []);
     setSetListTitle(loadedSetList.setListTitle || '');
   }, [JSON.stringify(loadedSetList)]);
@@ -58,7 +54,6 @@ const setlist = props => {
     const file = e.target.files[0];
     const {name} = file;
     const resource = name.replace('.json', '');
-    console.log('fetch', resource);
     setLoadFrom(resource);
     fetchSetList(resource);
   }

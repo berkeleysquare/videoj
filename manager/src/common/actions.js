@@ -16,7 +16,6 @@ const method = 'GET';
 const suffix = '.json';
 
 export function fetchResource(resource, id, options = {}) {
-  console.log('fetchResource', resource, id, options);
   if (!resource) {
     throw new Error('Specify a resource');
   }
