@@ -119,7 +119,7 @@ const albumDisplay = props => {
               <p>{searchedVideos.length} songs found</p>                      
             </Grid>
             <Grid item xs={8}>
-              <DownloadButton obj={jsonDoc} type={'json'}/>
+              <DownloadButton obj={jsonDoc} title={album.collection} type={'json'}/>
             </Grid>
         </Grid>
         </form>

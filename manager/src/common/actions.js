@@ -10,7 +10,7 @@ export const FETCH_COLLECTION_FAILURE = 'FETCH_COLLECTION_FAILURE';
 const ACTION_TYPES = [FETCH_COLLECTION_REQUEST, FETCH_COLLECTION_SUCCESS, FETCH_COLLECTION_FAILURE];
 
 
-//   Uses REST-style actions and reducer but does simple static http GGTs
+//   Uses REST-style actions and reducer but does simple static http GETs
 // S3 static gets are http
 const method = 'GET';
 const suffix = '.json';

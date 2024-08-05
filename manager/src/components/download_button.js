@@ -4,24 +4,31 @@ import Button from "@material-ui/core/Button";
 
 
 const downloadDataButton = props => {
-  const {obj, type} = props;
+  const {obj, title, type} = props;
 
   let blobURL, fileName;
+  let label = 'Download'
   if (type === 'json') {
     const blobJSON = new Blob([JSON.stringify(obj, null, 2)], {type: 'text/plain;charset=utf-8'});
     blobURL = URL.createObjectURL(blobJSON);
-    fileName = (obj.collection || 'album_data') + '.json';
+    fileName = (title || 'album_data') + '.json';
+  } else if (type === 'setlist') {
+    label = 'Download SetList JSON';
+    const blobJSON = new Blob([JSON.stringify(obj, null, 2)], {type: 'text/plain;charset=utf-8'});
+    blobURL = URL.createObjectURL(blobJSON);
+    fileName = (encodeURI(title || 'setlist')) + '.json';
   } else {
-    const blobTxt = new Blob([obj], {type: 'text/plain;charset=utf-8'});
+    label = 'Download SetList HTML';
+      const blobTxt = new Blob([obj], {type: 'text/plain;charset=utf-8'});
     blobURL = URL.createObjectURL(blobTxt);
-    fileName = 'setlist.html';
+    fileName = (encodeURI(title || 'setlist')) + '.html';
   }
 
   return (
     <a href={blobURL} download={fileName} target="_blank">
       <Button color={'info'}>
         <DownLoadIcon />
-        {'Download'}
+        {label}
       </Button>
     </a>
   );
