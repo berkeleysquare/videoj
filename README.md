@@ -1,5 +1,29 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## `Build and Test`
+cd into home dir
+```
+yarn build
+```
+Creates a release dir and populates with index.html .js and .css bundles
+
+```
+cd release
+mkdir assets
+cp videoj* assets/
+```
+
+Copy image assets from /public/assets
+Copy data dir and current json into assets.
+
+Launch Python test web server in release dir
+```
+python3 -m http.server
+```
+
+Open browser to http://localhost:8000
+
+
 ## Available Scripts
 
 In the project directory, you can run:

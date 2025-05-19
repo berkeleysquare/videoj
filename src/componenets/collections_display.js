@@ -12,7 +12,7 @@ export const styles = theme => ({
     position: 'absolute',
     left: 20,
     right: 20,
-    top: '620px',
+    top: '709px',
   },
   audio: {
     position: 'absolute',
@@ -24,17 +24,17 @@ export const styles = theme => ({
   },
   player: {
     position: 'absolute',
-    width: '556px',
-    height: '370px',
+    width: '720px',
+    height: '540px',
     left: '22px',
-    top: '161px',
+    top: '131px',
   },
   collectionTitle: {
     position: 'absolute',
     width: '555px',
     height: '26px',
     left: '23px',
-    top: '115px',
+    top: '85px',
     fontFamily: 'Raleway',
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -46,10 +46,10 @@ export const styles = theme => ({
   },
   collectionDescrip: {
     position: 'absolute',
-    width: '475px',
+    width: '505px',
     height: '329px',
-    left: '612px',
-    top: '173px',
+    left: '770px',
+    top: '130px',
     display: 'flex',
     flexDirection: 'column',
     color: '#FFFFFF',
@@ -71,6 +71,7 @@ export const styles = theme => ({
     lineHeight: '24px',
     marginTop: '2px',
     marginBottom: '20px',
+    whiteSpace: 'pre-line',
   },
 });
 
