@@ -26,7 +26,7 @@ python3 -m http.server
 
 Open browser to http://localhost:8000
 
-# Managment Application
+# Management Application
 To create / edit the json files that define collections:
 
 ```
