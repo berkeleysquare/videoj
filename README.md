@@ -27,10 +27,10 @@ python3 -m http.server
 Open browser to http://localhost:8000
 
 # Managment Application
-To create / edit the json files that define collection:
+To create / edit the json files that define collections:
 
 ```
-cd management
+cd manager
 yarn start
 ```
 Open browser to http://localhost:8080/
