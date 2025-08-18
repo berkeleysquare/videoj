@@ -33,6 +33,7 @@
     "start": "webpack-dev-server --mode development",
     "dev": "webpack --env=development",
     "build": "webpack --env=production",
+    "build:cf": "npm run build && mkdir -p release/assets && cp -r public/assets/* release/assets/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
