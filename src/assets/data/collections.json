@@ -1,0 +1,78 @@
+[
+  {
+    "artist": "jk boxed set",
+    "url": "/src/assets/jkFellForMagic.png",
+    "poster": "/src/assets/jkFellForMagic.png",
+    "title": "jk Boxed Set",
+    "description": "Released recordings, demos, and live performances from the JK Boxed Set. 1980 - Present.",
+    "width": "0%",
+    "collection": "home",
+    "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9))"
+  },
+  {
+    "url": "/src/assets/jkha.png",
+    "poster": "/src/assets/poster_halfgone.jpg",
+    "title": "Halfway Gone",
+    "artist": "jk & friends",
+    "date": "Released May 1982",
+    "description": "Released on Vinyl, before it was retro chic!",
+    "collection": "halfwaygone",
+    "width": "17%",
+    "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .9))"
+  },
+  {
+    "url": "/src/assets/jkev.png",
+    "poster": "/src/assets/poster_jkeven.jpg",
+    "title": "jk Even Numbered Decades",
+    "artist": "jk",
+    "date": "1984-1996",
+    "description": "Misc live recordings and demos",
+    "collection": "jk_even",
+    "width": "16%",
+    "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9))"
+  },
+  {
+    "url": "/src/assets/errand.png",
+    "poster": "/src/assets/poster_eb.jpg",
+    "title": "Errand Boys for Rhythm",
+    "artist": "Errand Boys for Ryhthm",
+    "date": "1996-1998",
+    "description": "jk & Bobby",
+    "collection": "errand",
+    "width": "17%",
+    "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9))"
+  },
+  {
+    "url": "/src/assets/berk1.png",
+    "poster": "/src/assets/poster_bksq.jpg",
+    "title": "Berkeley Square",
+    "artist": "Berkeley Square",
+    "date": "Released 1998",
+    "description": "jk, Brian, Brooke, and Gary",
+    "collection": "bksq1",
+    "width": "17%",
+    "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .8))"
+  },
+  {
+    "url": "/src/assets/berk2.png",
+    "poster": "/src/assets/poster_bksq2.jpg",
+    "title": "A Nightingale Sang",
+    "artist": "Berkeley Square",
+    "date": "Released 2001",
+    "description": "Kurt, jk, Brian, Brooke, and Gary",
+    "collection": "bksq2",
+    "width": "16%",
+    "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .8))"
+  },
+  {
+    "url": "/src/assets/coffee.png",
+    "poster": "/src/assets/coffeehouse.jpg",
+    "title": "The Coffeehouse",
+    "artist": "jk & freinds",
+    "date": "2009-present",
+    "description": "Live performances from The Coffeehouse 'A' Studios",
+    "collection": "coffeehouse",
+    "width": "16%",
+    "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .9))"
+  }
+]
