@@ -3,7 +3,7 @@ export const TITLE = "JK Boxed.com";
 export const HEADER_LINK = '#';
 
 // "bogus db: vend static JSON from /assets/data
-export const DATA_ENDPOINT = 'src/assets/data/';
+export const DATA_ENDPOINT = '/media/assets/data/';
 
 export const DEFAULT_COLLECTION = 'home';
 export const DEFAULT_ENSEMBLE = 'all';

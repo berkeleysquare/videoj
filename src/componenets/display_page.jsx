@@ -107,7 +107,7 @@ const mainDisplay = props => {
 
   // Background component selection based on collection - memoized to prevent re-renders
   const BackgroundComponent = useMemo(() => {
-    const imageUrl = collectionObject?.poster || '/src/assets/blank_back.jpg';
+    const imageUrl = collectionObject?.poster || '/assets/blank_back.jpg';
     const gradient = collectionObject?.backgroundGradient || 'linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .2))';
 
     return createBackgroundComponent(imageUrl, gradient);

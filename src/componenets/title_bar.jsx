@@ -43,7 +43,7 @@ const titleBar = props => {
     <TitleBarContainer>
       <TitleContent
         style={{
-          backgroundImage: `url(/src/assets/logo.jpg)`,
+          backgroundImage: `url(/assets/logo.jpg)`,
           width: 110,
           height: 34,
         }}
