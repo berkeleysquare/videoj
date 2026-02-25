@@ -26,29 +26,29 @@ const Audio = styled('audio')({
   opacity: '0.5'
 });
 
-const Player = styled('video')({
+const Player = styled('video')(({ aspectRatio }) => ({
   position: 'absolute',
-  width: '720px',
+  width: aspectRatio === '1.77' ? '960px' : '720px',
   height: '540px',
   left: '22px',
   top: '131px',
-});
+}));
 
-const PlayerImage = styled('img')({
+const PlayerImage = styled('img')(({ aspectRatio }) => ({
   position: 'absolute',
-  width: '720px',
+  width: aspectRatio === '1.77' ? '960px' : '720px',
   height: '540px',
   left: '22px',
   top: '131px',
-});
+}));
 
-const PlayerIframe = styled('iframe')({
+const PlayerIframe = styled('iframe')(({ aspectRatio }) => ({
   position: 'absolute',
-  width: '720px',
+  width: aspectRatio === '1.77' ? '960px' : '720px',
   height: '540px',
   left: '22px',
   top: '131px',
-});
+}));
 
 const CollectionTitle = styled('div')({
   position: 'absolute',
@@ -66,16 +66,16 @@ const CollectionTitle = styled('div')({
   color: '#FFFFFF',
 });
 
-const CollectionDescrip = styled('div')({
+const CollectionDescrip = styled('div')(({ aspectRatio }) => ({
   position: 'absolute',
   width: '505px',
   height: '329px',
-  left: '770px',
+  left: aspectRatio === '1.77' ? '1004px' : '770px',
   top: '130px',
   display: 'flex',
   flexDirection: 'column',
   color: '#FFFFFF',
-});
+}));
 
 const CollectionDescripTitle = styled('div')({
   fontFamily: 'Raleway',
@@ -160,7 +160,7 @@ const mainDisplay = props => {
   }
   const currentId =  video.id || id;
 
-  const {title, description, media, poster, recorded, composer, copyright} = video;
+  const {title, description, media, poster, recorded, composer, copyright, aspectRatio} = video;
   const ensembles = collectionEnsembles || [];
   const showAudio = isAudio(media);
   const showVideo = isVideo(media);
@@ -184,11 +184,13 @@ const mainDisplay = props => {
           {title: 'Released', text: recorded},
           {title: 'Composer', text: composerCopyright},
         ]}
+        aspectRatio={aspectRatio}
         component={CollectionDescrip}
         titleComponent={CollectionDescripTitle}
         textComponent={CollectionDescripText}
       />
       {showVideo && <Player
+                 aspectRatio={aspectRatio}
                  controls
                  poster={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')}
                  src={collectionMedia + media} type="video/mp4">
@@ -196,6 +198,7 @@ const mainDisplay = props => {
             </Player>}
       {showAudio && <div>
         <PlayerImage
+             aspectRatio={aspectRatio}
              alt={(poster != null) ? poster.toString() : '__unknown___'}
              src={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')} />
         <Audio
@@ -204,10 +207,10 @@ const mainDisplay = props => {
         Your browser does not support the audio tag.
         </Audio></div>}
         {showYouTube && <div>
-          <PlayerIframe title={'YouTubePlayer'} src={youTubeUrl(media)}></PlayerIframe>
+          <PlayerIframe aspectRatio={aspectRatio} title={'YouTubePlayer'} src={youTubeUrl(media)}></PlayerIframe>
         </div>}
         {showVimeo && <div>
-          <PlayerIframe title={'Vimeo Player'} src={vimeoUrl(media)} allow="fullscreen" allowFullScreen></PlayerIframe>
+          <PlayerIframe aspectRatio={aspectRatio} title={'Vimeo Player'} src={vimeoUrl(media)} allow="fullscreen" allowFullScreen></PlayerIframe>
         </div>}
 
       <PreviewStripContainer>

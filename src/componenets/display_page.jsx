@@ -112,7 +112,6 @@ const mainDisplay = props => {
 
     return createBackgroundComponent(imageUrl, gradient);
   }, [collectionObject?.poster, collectionObject?.backgroundGradient]);
-  console.log('Render display page with BackgroundComponent');
 
   const ensembleControl = (!fetching && collection) ?
     (

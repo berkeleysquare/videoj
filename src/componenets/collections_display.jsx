@@ -93,9 +93,6 @@ const collectionsDisplay = props => {
 
   const [collection, setCollection] = useState(DEFAULT_COLLECTION)
 
-  console.log('Render collections display');
-  console.log('collections', collections);
-  console.log('collection', collection);
   const collectionDescription = getCollectionDescription(collection, collections);
 
   const handleButtonEnter = collectionName => {
@@ -136,7 +133,6 @@ const collectionsDisplay = props => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('state', state);
   const collectionsState = state.collections || {};
   return {
     collections: getDataArray(collectionsState),
