@@ -141,7 +141,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllCollections: () => dispatch(fetchResource('collections')),
+    fetchAllCollections: () => dispatch(fetchResource('collections', null, {endpoint: '/media/assets/'})),
   };
 };
 

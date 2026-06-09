@@ -24,7 +24,7 @@ export function fetchResource(resource, id, options = {}) {
   // pass in an optional store resource name different from resource
   const resourceStoreName = options.storeName || resource;
 
-  const customEndpoint = DATA_ENDPOINT;
+  const customEndpoint = options.endpoint || DATA_ENDPOINT;
   const encodedResource = resource.split('/').map(x => encodeURIComponent(x)).join('/');
   const resourceComponent = id ? encodedResource + '/' + encodeURIComponent(id) : encodedResource;
   const endpoint = `${customEndpoint}${resourceComponent}${suffix}`;

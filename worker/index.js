@@ -31,7 +31,6 @@ export default {
         headers.set("cache-control", "public, max-age=86400");
         headers.set('X-Worker-Called', 'true');
         headers.set('X-Worker-Path', url.pathname);
-        headers.set('X-R2-Object', objectKey);
 
         return new Response(object.body, {
           headers,
