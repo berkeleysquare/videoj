@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import {DisplayItem, DisplayItems} from './display_page';
 import PreviewStrip from './preview_strip';
 
-import {isAudio, isVideo, isYouTube, isVimeo, DEFAULT_ID} from '../constants'
+import {isAudio, isVideo, isYouTube, isVimeo, getVideoMimeType, DEFAULT_ID} from '../constants'
 import {fetchResource, isFetching, getDataArray} from '../store/actions'
 
 // Styled components for videos display
@@ -166,6 +166,7 @@ const mainDisplay = props => {
   const showVideo = isVideo(media);
   const showYouTube = isYouTube(media);
   const showVimeo = isVimeo(media);
+  const videoMimeType = getVideoMimeType(media);
   const youTubeUrl = media => 'https://www.youtube.com/embed/' + media.split(':')[1]
   const vimeoUrl = media => 'https://player.vimeo.com/video/' + media.split(':')[1]
 
@@ -192,8 +193,8 @@ const mainDisplay = props => {
       {showVideo && <Player
                  aspectRatio={aspectRatio}
                  controls
-                 poster={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')}
-                 src={collectionMedia + media} type="video/mp4">
+             poster={collectionAssets + ((poster != null) ? poster.toString() : '__unknown___')}>
+            <source src={collectionMedia + media} type={videoMimeType} />
                 Your browser does not support the video tag.
             </Player>}
       {showAudio && <div>

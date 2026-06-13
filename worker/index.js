@@ -15,6 +15,7 @@ export default {
       try {
         // Remove /media/ prefix to get the actual R2 object key
         const objectKey = url.pathname.slice(7); // removes "/media/"
+        const isDataAsset = objectKey.startsWith('assets/data/');
         
         // Get object from R2 bucket
         const object = await env.R2_BUCKET.get(objectKey);
@@ -28,7 +29,10 @@ export default {
         const headers = new Headers();
         object.writeHttpMetadata(headers);
         headers.set("etag", object.httpEtag);
-        headers.set("cache-control", "public, max-age=86400");
+        headers.set(
+          "cache-control",
+          isDataAsset ? "no-cache, must-revalidate" : "public, max-age=86400"
+        );
         headers.set('X-Worker-Called', 'true');
         headers.set('X-Worker-Path', url.pathname);
 

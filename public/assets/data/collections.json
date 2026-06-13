@@ -17,7 +17,7 @@
     "date": "Released May 1982",
     "description": "Released on Vinyl, before it was retro chic!",
     "collection": "halfwaygone",
-    "width": "17%",
+    "width": "14%",
     "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .9))"
   },
   {
@@ -28,7 +28,7 @@
     "date": "1984-1996",
     "description": "Misc live recordings and demos",
     "collection": "jk_even",
-    "width": "16%",
+    "width": "14%",
     "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9))"
   },
   {
@@ -39,7 +39,7 @@
     "date": "1996-1998",
     "description": "jk & Bobby",
     "collection": "errand",
-    "width": "17%",
+    "width": "14%",
     "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9))"
   },
   {
@@ -50,7 +50,7 @@
     "date": "Released 1998",
     "description": "jk, Brian, Brooke, and Gary",
     "collection": "bksq1",
-    "width": "17%",
+    "width": "14%",
     "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .8))"
   },
   {
@@ -61,7 +61,7 @@
     "date": "Released 2001",
     "description": "Kurt, jk, Brian, Brooke, and Gary",
     "collection": "bksq2",
-    "width": "16%",
+    "width": "14%",
     "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .8))"
   },
   {
@@ -72,7 +72,18 @@
     "date": "2009-present",
     "description": "Live performances from The Coffeehouse 'A' Studios",
     "collection": "coffeehouse",
-    "width": "16%",
+    "width": "14%",
     "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .9))"
-  }
+  },
+  {
+    "url": "/assets/muse.png",
+    "poster": "/assets/muse_poster.png",
+    "title": "Muse",
+    "artist": "jk",
+    "date": "May 28, 2026",
+    "description": "jk plays gypsy-tinged american standards livestream from the Muse in Lafayette, CO",
+    "collection": "muse",
+    "width": "14%",
+    "backgroundGradient": "linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .9))"
+  }  
 ]
